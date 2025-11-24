@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>盲盒系列 - 产品介绍</title>
+<style>
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+body {
+	font-family: 'Arial', sans-serif;
+	background: linear-gradient(135deg, #ff9a56 0%, #ff6b35 100%);
+	min-height: 100vh;
+	color: #333;
+}
+.navbar {
+	background: rgba(255, 255, 255, 0.95);
+	padding: 1rem 0;
+	position: fixed;
+	width: 100%;
+	top: 0;
+	z-index: 1000;
+	backdrop-filter: blur(10px);
+}
+.nav-container {
+	max-width: 1200px;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 2rem;
+}
+.logo {
+	font-size: 1.8rem;
+	font-weight: bold;
+	color: #ff6b35;
+}
+.nav-links {
+	display: flex;
+	list-style: none;
+	gap: 2rem;
+}
+.nav-links a {
+	text-decoration: none;
+	color: #333;
+	font-weight: 500;
+	transition: color 0.3s;
+}
+.nav-links a:hover {
+	color: #ff6b35;
+}
+.container {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 8rem 2rem 4rem;
+}
+.hero {
+	text-align: center;
+	margin-bottom: 4rem;
+}
+.hero h1 {
+	font-size: 3rem;
+	color: white;
+	margin-bottom: 1rem;
+	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+.hero p {
+	font-size: 1.2rem;
+	color: rgba(255, 255, 255, 0.9);
+	max-width: 600px;
+	margin: 0 auto;
+}
+.featured-sections {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 2rem;
+	margin: 4rem 0;
+}
+.featured-card {
+	background: white;
+	border-radius: 20px;
+	overflow: hidden;
+	box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+	transition: transform 0.3s, box-shadow 0.3s;
+	cursor: pointer;
+}
+.featured-card:hover {
+	transform: translateY(-10px);
+	box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+}
+.featured-image {
+	width: 100%;
+	height: 250px;
+	background-size: cover;
+	background-position: center;
+	position: relative;
+	overflow: hidden;
+}
+.featured-image.demon-slayer {
+	background: linear-gradient(45deg, #ff9a56, #ffd89b);
+}
+.featured-image.honor-of-kings {
+	background: linear-gradient(45deg, #ff6b35, #f7931e);
+}
+.featured-image.anime-heroes {
+	background: linear-gradient(45deg, #ff8a65, #ffab91);
+}
+.featured-image::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0, 0, 0, 0.1);
+}
+.featured-image img {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	top: 0;
+	left: 0;
+}
+.featured-content {
+	padding: 2rem;
+}
+.featured-title {
+	font-size: 1.5rem;
+	font-weight: bold;
+	color: #d84315;
+	margin-bottom: 1rem;
+	text-align: center;
+}
+.featured-description {
+	color: #666;
+	line-height: 1.6;
+	margin-bottom: 1.5rem;
+	font-size: 0.95rem;
+}
+.featured-highlights {
+	list-style: none;
+	margin-bottom: 1.5rem;
+}
+.featured-highlights li {
+	color: #777;
+	margin-bottom: 0.5rem;
+	padding-left: 1rem;
+	position: relative;
+	font-size: 0.9rem;
+}
+.featured-highlights li::before {
+	content: '•';
+	color: #ff6b35;
+	position: absolute;
+	left: 0;
+	font-weight: bold;
+}
+.products-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	gap: 2rem;
+	margin-top: 3rem;
+}
+.product-card {
+	background: white;
+	border-radius: 15px;
+	padding: 2rem;
+	text-align: center;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+	transition: transform 0.3s, box-shadow 0.3s;
+	cursor: pointer;
+}
+.product-card:hover {
+	transform: translateY(-10px);
+	box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+.product-image {
+	width: 200px;
+	height: 200px;
+	background: linear-gradient(45deg, #ff6b35, #ffd89b);
+	border-radius: 15px;
+	margin: 0 auto 1.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 4rem;
+	color: white;
+	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+.product-card h3 {
+	font-size: 1.5rem;
+	margin-bottom: 1rem;
+	color: #333;
+}
+.product-card p {
+	color: #666;
+	line-height: 1.6;
+	margin-bottom: 1.5rem;
+}
+.price {
+	font-size: 1.3rem;
+	font-weight: bold;
+	color: #d84315;
+	margin-bottom: 1rem;
+}
+.btn {
+	background: linear-gradient(45deg, #ff6b35, #ff9a56);
+	color: white;
+	border: none;
+	padding: 0.8rem 2rem;
+	border-radius: 25px;
+	cursor: pointer;
+	font-size: 1rem;
+	transition: transform 0.3s;
+}
+.btn:hover {
+	transform: scale(1.05);
+}
+/* 弹窗样式 */
+.modal {
+	display: none;
+	position: fixed;
+	z-index: 2000;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.8);
+	backdrop-filter: blur(5px);
+}
+.modal-content {
+	background-color: white;
+	margin: 5% auto;
+	padding: 2rem;
+	border-radius: 20px;
+	width: 90%;
+	max-width: 600px;
+	position: relative;
+	animation: modalSlideIn 0.3s ease-out;
+}
+ @keyframes modalSlideIn {
+ from {
+ opacity: 0;
+ transform: translateY(-50px);
+}
+to {
+	opacity: 1;
+	transform: translateY(0);
+}
+}
+.close {
+	color: #aaa;
+	float: right;
+	font-size: 2rem;
+	font-weight: bold;
+	cursor: pointer;
+	position: absolute;
+	right: 1rem;
+	top: 1rem;
+}
+.close:hover {
+	color: #333;
+}
+.modal h2 {
+	color: #ff6b35;
+	margin-bottom: 1rem;
+}
+.modal-image {
+	width: 150px;
+	height: 150px;
+	background: linear-gradient(45deg, #ff6b35, #ffd89b);
+	border-radius: 15px;
+	margin: 0 auto 1.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 3rem;
+	color: white;
+}
+ @media (max-width: 768px) {
+.nav-links {
+	display: none;
+}
+.hero h1 {
+	font-size: 2rem;
+}
+.featured-sections {
+	grid-template-columns: 1fr;
+}
+.products-grid {
+	grid-template-columns: 1fr;
+}
+}
+.daohang {
+	width: 100%;
+	margin: 0 auto;
+}
+.nav {
+	height: 56px;
+	background-image: url(img/rx.webp);
+	width: 100%;
+}
+.li1 {
+	display: inline;
+	line-height: 56px;
+	text-align: center;
+}
+.li1 a:link {
+	width: 90px;
+	height: 56px;
+	float: left;
+	padding: 0px 8px 0px 8px;
+	margin: 0 10px 0 20px;
+	text-decoration: none;
+	text-align: center;
+	font-family: tahoma;
+	font-size: 18px;
+	font-weight: bold;
+	color: #FFF;
+}
+.li1 a:hover {
+	color: #F00;
+	background-color: #F9F;
+}
+.daohang {
+	width: 1000px;
+	margin: 0 auto;
+}
+.iteam {
+text-align="center"
+}
+.iteam a:link {
+	display: block;
+	font-size: 24px;
+	color: #F39;
+	font-weight: bolder;
+	text-decoration: none;
+	height: 40px;
+	width: 160px;
+	margin-left: 10px;
+}
+.iteam a:visited {
+	font-size: 24px;
+	color: #F66;
+}
+.iteam a:hover {
+	font-size: 36px;
+	font-weight: 900;
+	color: #FF0;
+	text-decoration: none;
+	background-color: #6FC;
+}
+.iteam a:active {
+	color: #F3C;
+	text-decoration: line-through;
+}
+.fangkuang {
+	background-color: #3CC;
+	height: 200px;
+	width: 200px;
+	border: thick thin #0F9;
+}
+.ulnav {
+	list-style-type: none;
+}
+.ulcss {
+	width: 200px;
+	list-style: none;
+	background: #fff;
+	border: thin solid ##045B91;
+	margin: 50px 150px;
+	padding: 0px;
+}
+.bt {
+	height: 70px;
+	padding-left: 10px;
+	font-size: 18px;
+	line-height: 70px;
+	text-align: left;
+	font-weight: bolder;
+	color: #Fff;
+	background-color: #045B91;
+}
+.licss {
+	height: 50px;
+	font-size: 18px;
+	line-height: 55px;
+	text-align: left;
+	font-weight: bolder;
+	color: #Fff;
+	padding-left: 10px;
+	border: thin solid #045B91;
+}
+.licss a:link, .licss a:visited {
+	color: #333;
+	text-decoration: none;
+}
+.licss a:hover {
+	color: #f00;
+}
+.daohang .nav .li1 a {
+	font-family: 楷体;
+}
+body, td, th {
+	font-family: 楷体;
+	font-size: 36px;
+	color: #FCF;
+}
+.p1 {
+	margin-top: 10px;
+	font-family: '楷体', KaiTi, KaiTi_GB2312, sans-serif;
+	font-size: 18px;
+	text-indent: 2em;
+	color: black;
+}
+.li2 {
+	background-image: url(img/guchengrongzhou.jpeg);
+	border: 100% none #FFC;
+}
+.p {
+	font-family: 宋体;
+	font-size: 18px;
+	font-weight: bolder;
+	color: #000;
+	text-align: center;
+}
+.p a:visited {
+	font-size: 36px;
+	text-decoration: line-through;
+	color: #F66;
+}
+.container1 {
+	font-family: 楷体;
+	background-color: #FFF;
+	display: flex;
+	jutisfy-content: space-between;
+}
+.container {
+	font-family: 楷体;
+}
+.container .box h2 {
+	font-family: 楷体;
+}
+.bottom {
+	font-family: 楷体;
+	font-size: 24px;
+	background-color: #F99;
+	text-align: center;
+}
+.box {
+	font-family: 楷体;
+	width: 100%;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+ style="margin-top:10px";
+}
+</style>
+</head>
+
+<body>
+<nav class="navbar">
+  <div class="nav-container" style="font-size:20px">
+    <div class="logo">🎁 Grey Doll</div>
+    <ul class="nav-links">
+      <li ><a href="index.html" >首页</a></li>
+      <li><a href="story.html">灰塑艺术代表作品</a></li>
+      <li><a href="series.html">文创产品盲盒系列</a></li>
+      <li><a href="about.html">关于我们</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="container">
+<div class="hero">
+  <h1>宣传视频</h1>
+  <div>
+    <video width="80%" controls>
+      <source src="vedio/广西灰灰成品(1).mp4" ;type=" vedio/广西灰灰成品(1).mp4" >
+    </video>
+  </div>
+  <p  style="margin-top:10px;margin-bottom:10px; font-family: '宋体', ; font-size:25px">每一个盒子都是一个惊喜，每一次开启都是一场冒险。探索未知，收集惊喜，让生活充满期待！</p>
+</div>
+<div style="margin-top:20px; background-color:#FFF;" >
+  <h2 align="center" style="margin-top:10px;margin-bottom:10px; font-family: '楷体', KaiTi, KaiTi_GB2312, sans-serif; color: black;" >灰塑文化科普</h2>
+</div>
+<div class="container1">
+  <div  class="box">
+    <p class="p1"><img src="../imgas/index ima/灰塑1.png" width=45% height=100% /><img src="../imgas/index ima/灰塑2.png" width=45% height=100% style="margin-left:10px" /></p>
+    <h2 style="margin-top:10px; margin-bottom:10px;font-family: '楷体', KaiTi, KaiTi_GB2312, sans-serif; color: black;">历史渊源</h2>
+    <p class="p1" style="margin-top:20px">唐僖宗中和四年（884年），中国国内已经有灰塑用于建筑装饰的记载”。广州地区迄今所见最早运用灰塑装饰的建筑是始建于宋庆元三年（1197年）的增城证果寺，其屋脊为灰塑龙船脊，工艺较粗糙、简单，题材单调，主要用于通风和压住屋顶瓦面以免被大风吹走。
+    <p class="p1"style="margin-top:10px">明清时期，广州商品经济繁荣，富贾平民竞尚居饰，灰塑需求骤增，远播粤东粤北。筑祠建宅成风，佛山、沙湾泥瓦匠兼擅灰塑，各怀绝活。祖庙、陈氏书院、资政大夫祠等数十处留下其杰作：戏文故事、瑞兽花鸟，皆精雕细镂，栩栩如生，尽展广府灰塑华美巅峰。</p>
+    <p class="p1" style="margin-top:10px">晚清至民国时期，灰塑需求呈下降趋势，特别是民国以后，传统建筑逐步菱缩，灰塑的施工较慢，人工成本高，天然材料价格渐涨，市场需求下降，大批工匠流失。抗日战争期间，许多建筑上的灰塑装饰遭到破坏。</p>
+    <p class="p1" style="margin-top:10px">中华人民共和国成立初期，经济处于恢复期，随后在“文化大革命”期间，灰塑作品被当作“四旧”打倒，制作灰塑的艺人寥寥无几。这一阶段的灰塑制作主要以修缮为主，这种状况一直延续到改革开放初。在1958年—1983年期间， 广州市陈家祠进行多次建筑维修，邀请了佛山、南海、番禺、高要、广州等地的灰塑工匠修复灰塑，使灰塑工艺得以流传。</p>
+    <p class="p1" > 改革开放后，古建修缮日增，灰塑需求回升；非遗政策落地，政府扶持加码，行业迅速复苏。技艺承明清之余绪，间出新意。匠人从寥寥数人增至三十余，两广、湖南学徒纷至，习得手艺并携归故里，广州灰塑由此播撒四方。 </p>
+    </p>
+    <h2  style="margin-top:20px; margin-bottom:10px; font-family: '楷体', KaiTi, KaiTi_GB2312, sans-serif; color: black;">文化特征</h2>
+    <h5 align="center"   class=" iteam" style="margin-top:10px"> 艺术特点</h5>
+    <p class="p1" style="margin-top:10px"> <strong>表现手法</strong>：</p>
+    <p  class="p1" style="margin-top:10px">灰塑以浮雕、半浮雕形式呈现立体/半立体形态，造型层次丰富，屋宇结构关系清晰，整体玲珑通透、主题突出； </p>
+    <p  class="p1" style="margin-top:10px"> 手法概括简洁、线条粗劲，色彩以大色块为主，强烈清晰，多用自然色，民间装饰风格浓厚。</p>
+    <p class="p1" style="margin-top:20px"> <strong>题材特点：</strong></p>
+    <p  class="p1" style="margin-top:10px"> 1.通俗性：广取喜闻乐见的民间故事、名人、花鸟、瑞兽、山水书法等，多展现岭南风光。</p>
+    <p class="p1" style="margin-top:10px"> 2.故事性：一组或多组灰塑连续讲述一个故事，如“三国演义”“竹林七贤”。</p>
+    <p class="p1" style="margin-top:10px"> 3.教义性：服务于祠堂庙宇，宣扬人伦道德、孝道互助，如“桃园三结义”“郭子仪贺寿”。</p>
+    <p class="p1" style="margin-top:10px"> 4.寓意性：借谐音、象征把蝙蝠、独角狮、花瓶、葡萄、老鼠等化作“福、安、吉祥、多子”之愿。</p>
+    <p class="p1" style="margin-top:20px"><strong>装饰图案：</strong></p>
+    <p  class="p1" style="margin-top:10px"> 1.图案造型：“人大于屋，树高于山”突出人物，装饰性强，兼顾仰视舒适度。</p>
+    <p class="p1" style="margin-top:10px"> 2.图案手法：对吉祥物局部夸张（蝙蝠翅、独角狮角），形象鲜明生动。</p>
+    <p class="p1" style="margin-top:10px"> 3.图案构图：兼用国画章法与书画结合，大量对称布局，以屋脊为中轴求稳定平衡。</p>
+    </p>
+    </p>
+    <p class="p1" style="margin-top:20px"><strong>色彩：</strong></p>
+    <p  class="p1" style="margin-top:10px"> 1.自然色表现：以自然物原色为基础再调和，显现艺人对生活与大自然的热爱。</p>
+    <p class="p1" style="margin-top:10px"> 2.暖色调为主：整体红、黄暖色，传递喜庆、吉祥、温暖之情。</p>
+    <p class="p1" style="margin-top:10px"> 3.补色巧用：红绿、黄紫等对比色穿插，使画面斑斓而和谐。</p>
+    <p class="p1" style="margin-top:10px"> 4.底色统一：黑、白或单色衬底统领全幅，让纷繁色彩统一协调。</p>
+    <p class="p1" style="margin-top:10px"> 5.勾边运用：建筑轮廓常用红、白、黑等单色线条勾勒，增强立体感与整体秩序。</p>
+    </p>
+    <h5 align="center"  class=" iteam" style="margin-top:10px"> 工艺特点</h5>
+    </p>
+    <p class="p1" style="margin-top:20px"> <strong>制作材料：</strong></p>
+    <p  class="p1" style="margin-top:10px"> 灰塑以生石灰、纸筋、稻草、矿物颜料、钢钉、钢线为主，均耐酸、耐碱、耐温，确保雕塑牢固持久。 </p>
+    <p class="p1" style="margin-top:20px"><strong>造型制作：</strong></p>
+    <p  class="p1" style="margin-top:10px"> 1.批底：骨架固定后，用草根灰层层包覆，每层≤3 cm，隔日再批，且需压实，逐层至雏形成型。</p>
+    <p class="p1" style="margin-top:10px"> 2.批灰：纸筋灰定型后，把颜料掺入纸筋灰制成“色灰”，先后上两道色灰面，完成最终定型与修型。</p>
+    </p>
+    </p>
+    <p class="p1" style="margin-top:20px"><strong>上色：</strong></p>
+    <p  class="p1" style="margin-top:10px"> 1.纸筋灰与彩绘须当天同步完成，使颜料渗入并同步氧化。</p>
+    <p class="p1" style="margin-top:10px"> 2.按“浅→深”逐层加色，每层间隔3–4 h，最后以黑色勾线。</p>
+    <p class="p1" style="margin-top:10px"> 3.完成后保持2天适宜湿度，让颜料充分吸收，确保颜色持久不褪，至此灰塑工艺全部完成。 </p>
+    <h2 style="margin-top:20px;margin-bottom:10px; font-family: '楷体', KaiTi, KaiTi_GB2312, sans-serif; color: black;"  >制作工序</h2>
+    <p class="p1"><img src="../imgas/index ima/灰塑1.png" width=45% height=100% /><img src="../imgas/index ima/灰塑2.png" width=45% height=100% style="margin-left:10px" /></p>
+    <p class="p1" style="margin-top:20px;margin-bottom:20px">灰塑制作一般包括五个基本步骤：</p>
+    <p class="p1" style="margin-top:5px" > <strong>1.炼制灰泥</strong>,是灰塑关键，需将石灰特殊加工成兼具强度与塑性的材料。分"草筋灰""纸筋灰"两类，通过调整稻草或草纸配比制成。制作时先充分混合石灰和水，经反复舂打至浆体细腻黏稠（称"舂灰"），再密封养护15天以上（称"养灰"），最后捶打至拉丝状。熟练艺人会添加红糖、糯米粉提升黏性与控干效果，确保灰泥满足复杂造型需求。</p>
+    <p class="p1" style="margin-top:10px"><strong>2.构图,</strong>艺人根据建筑空间和装饰部位的需要，直接在建筑物上设计图案，并根据装饰部位的不同，结合其实用功能，采用不同的表现形式、装饰手法和构图内容。灰塑装饰没有程式化的模式，全由艺人在现场施工制作，因而具有很大的灵活性和随意性。</p>
+    <p class="p1" style="margin-top:10px"><strong>3.批底，</strong>即制作造型底子。根据造型需要和表现对象突出于墙面的距离，运用平面做（平雕、浅浮雕）、半边做（高浮雕）、立体做（圆雕）等技法，需要时用瓦筒或铜线等扎成骨架，选用质地比较硬的“草筋灰”塑型压实，隔一两天之后，待第一层“草筋灰”将干未干时，填入第二层，如此类推，直至结构成型。</p>
+    <p class="p1" style="margin-top:10px" style="margin-bottom:20px" >
+    <strong>4.塑型，</strong>主要是对物象进行细部塑造，选用相对细腻和柔滑的“纸筋灰”。艺人凭借精湛技艺，用工具精心雕琢，通过细腻的涂抹、勾勒等手法，专注于塑造物象的表情等细节。比如人物的喜怒哀乐、动物的灵动神态等，都在这一步精准呈现，让灰塑作品从大致轮廓变得栩栩如生，赋予其鲜活的艺术生命力。
+</p>
+    <p class="p1" style="margin-top:10px" style="margin-bottom:20px" >
+    <strong>5.上彩，</strong>遵循“先里后外、先大后小、先深后浅”的原则，在完成的造型上绘上色彩。一部分颜料是用“纸筋灰”调制成的“色灰”，是灰塑的主体颜色；另一部分颜料单独使用，待灰塑干到七成方可动笔，以让颜料借助石灰硬化的过程，牢牢地附在灰塑的表面，从而能够保持长时间不褪色。
+</p>
+    </p>
+    <h2 style="margin-top:20px;margin-bottom:10px; font-family: '楷体', KaiTi, KaiTi_GB2312, sans-serif; color: black;" >传承保护</h2>
+    <h5 align="center"   class=" iteam" style="margin-top:10px">传承价值</h5>
+    <p class="p1" style="margin-top:10px"> 灰塑作为传统工艺，通过外观体现出了材质，结构，造型等美学特点，但就单纯的装饰形式而言，灰塑是一种介于中国传统绘画，雕塑，图形纹样之间的装饰艺术，它既包含中国传统艺术“以形写神”“追求意境”“外师造化”的审美思想，又在构图布局、形象塑造、应物随类、意境营造等方面借鉴和运用了大量中国传统艺术的表现手法。传统纹样图案是一种经常在灰塑作品中出现的装饰形式，其通常是对人物、动物、植物、日月星辰进行极度抽象化的结果，每个历史时期都有属于自己的独特纹样，纹样图案也反映了一个时代，一个地区的风俗习惯，工艺水平和审美意趣。<br>
+    </p>
+    <p class="p1" style="margin-top:10px"> 灰塑作品以艺术的形式向世人传达着中国传统文化和丰富多彩的地域风情，不仅把历史、神话、民俗、文学和哲学等融为一-体，更把传统文化与审美标准巧妙地结合起来，具有深厚的文化内涵。</p>
+    <h5 align="center"   class=" iteam" style="margin-top:10px">传承现状</h5>
+    <p class="p1" style="margin-top:10px"> 在现代文明的冲击下，传统建筑行业趋于式微，受其影响，灰塑的发展状况也很不理想，急需有关方面尽快投入力量展开抢救保护工作.</p>
+    <p class="p1" style="margin-top:10px"><strong>1.传承人老龄化与后继乏人​</strong></p>
+    <p  class="p1" style="margin-top:10px">目前岭南灰塑的国家级与省级非遗传承人多为中老年匠人（如邵成村等），年轻从业者数量不足。传统灰塑技艺学习周期长（需5-10年）、劳动强度大且经济效益较低，导致年轻人兴趣有限，传承队伍面临断层风险。尽管部分职业院校开设相关课程，但系统化人才培养仍显薄弱</p>
+    <p class="p1" style="margin-top:10px"><strong>2.市场需求萎缩与创新探索并行</strong>​</p>
+    <p  class="p1" style="margin-top:10px"> 随着现代建筑技术的普及，灰塑在新建民居中的应用大幅减少，其生存空间主要集中于古建筑修复（如陈家祠、佛山祖庙等）和文旅景区装饰。为应对挑战，传承人尝试结合现代审美开发文创产品（如灰塑摆件、小型浮雕），并通过短视频、非遗展览推广技艺，但市场化程度仍不足，依赖政府项目与旅游经济的支持。</p>
+    <p class="p1" style="margin-top:10px"><strong>3.政策保护与活态传承初见成效​​</strong></p>
+    <p  class="p1" style="margin-top:10px">广东省通过非遗名录保护、专项资金扶持及“师带徒”模式推动传承，如广州灰塑博物馆的建立促进了技艺展示与研究。然而，整体保护仍以抢救性记录为主，活态传承与社区参与需进一步深化。</p>
+    </p>
+    </p>
+    <h2 style="margin-top:20px;margin-bottom:10px; font-family: '楷体', KaiTi, KaiTi_GB2312, sans-serif; color: black;" >社会影响</h2>
+    <h5 align="center"   class=" iteam" style="margin-top:10px">社会活动</h5>
+    <p class="p1"  > 2012年12月，在全国第十四次社会科学普及工作经验交流会中，灰塑产品作为中国区域文化形象礼品带往新加坡，巴基斯坦以及美国等世界各地。 <br>
+      2018年11月3日，在广州文艺空间举办的花都周末文艺花会中，国家级非遗项目灰塑得到展出。 </p>
+    <p class="p1" style="margin-top:10px"> 2019年6月5日，番禺区2019年“文化和自然遗产日”活动在余荫山举行，灰塑在其中得到展示。 </p>
+    <p>
+    <h2 style="margin-top:30px"> </h2>
+    </p>
+  </div>
+</div>
+
+   <p  align="center" style="margin-top:20px;margin-bottom:10px; font-family: '楷体'; font-size:24px;color: black; max-width:100%; height: auto; align="center"  > 版权所有Grey Doll 邮箱：xxxxxxxx@xxx.com  地址：xxxxxxxx</p>
+
+</body>
+</html>

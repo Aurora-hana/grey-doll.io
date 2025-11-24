@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>盲盒系列 - 全系列展示</title>
+    <style>
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+body {
+	font-family: 'Arial', sans-serif;
+	background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+	min-height: 100vh;
+	color: #333;
+}
+.navbar {
+	background: rgba(255, 255, 255, 0.95);
+	padding: 1rem 0;
+	position: fixed;
+	width: 100%;
+	top: 0;
+	z-index: 1000;
+	backdrop-filter: blur(10px);
+}
+.nav-container {
+	max-width: 1200px;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 2rem;
+}
+.logo {
+	font-size: 1.8rem;
+	font-weight: bold;
+	color: #764ba2;
+}
+.nav-links {
+	display: flex;
+	list-style: none;
+	gap: 2rem;
+}
+.nav-links a {
+	text-decoration: none;
+	color: #333;
+	font-weight: 500;
+	transition: color 0.3s;
+}
+.nav-links a:hover {
+	color: #764ba2;
+}
+.container {
+	max-width: 1400px;
+	margin: 0 auto;
+	padding: 8rem 2rem 4rem;
+}
+.series-header {
+	text-align: center;
+	margin-bottom: 4rem;
+}
+.series-header h1 {
+	font-size: 3rem;
+	color: white;
+	margin-bottom: 1rem;
+	text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+.series-header p {
+	font-size: 1.2rem;
+	color: rgba(255,255,255,0.9);
+	max-width: 600px;
+	margin: 0 auto;
+}
+.filter-tabs {
+	display: flex;
+	justify-content: center;
+	gap: 1rem;
+	margin-bottom: 3rem;
+	flex-wrap: wrap;
+}
+.filter-tab {
+	background: rgba(255,255,255,0.9);
+	border: none;
+	padding: 0.8rem 1.5rem;
+	border-radius: 25px;
+	cursor: pointer;
+	font-size: 1rem;
+	transition: all 0.3s;
+	backdrop-filter: blur(10px);
+}
+.filter-tab.active {
+	background: linear-gradient(45deg, #667eea, #764ba2);
+	color: white;
+	transform: scale(1.05);
+}
+.filter-tab:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+.series-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+	gap: 2rem;
+	margin-top: 2rem;
+}
+.series-card {
+	background: white;
+	border-radius: 20px;
+	overflow: hidden;
+	box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+	transition: all 0.3s;
+	opacity: 1;
+	transform: scale(1);
+	display: flex;
+	flex-direction: column;
+}
+.series-card.hidden {
+	opacity: 0;
+	transform: scale(0.8);
+	pointer-events: none;
+}
+.series-card:hover {
+	transform: translateY(-10px) scale(1.02);
+	box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+}
+.series-banner {
+	height: 80px;
+	background: linear-gradient(45deg, #ff6b6b, #feca57);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 4rem;
+	color: white;
+	position: relative;
+	overflow: hidden;
+}
+.series-banner::before {
+	content: '';
+	position: absolute;
+	top: -50%;
+	left: -50%;
+	width: 200%;
+	height: 200%;
+	background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+	transform: rotate(45deg);
+	animation: shine 3s infinite;
+}
+ @keyframes shine {
+ 0% {
+transform: translateX(-100%) translateY(-100%) rotate(45deg);
+}
+ 50% {
+transform: translateX(100%) translateY(100%) rotate(45deg);
+}
+ 100% {
+transform: translateX(-100%) translateY(-100%) rotate(45deg);
+}
+}
+.series-info {
+	padding: 2rem;
+}
+.series-title {
+	font-size: 1.5rem;
+	font-weight: bold;
+	color: #333;
+	margin-bottom: 0.5rem;
+}
+.series-subtitle {
+	color: #666;
+	margin-bottom: 1rem;
+	font-size: 0.9rem;
+}
+.series-description {
+	color: #666;
+	line-height: 1.6;
+	margin-bottom: 1rem;
+}
+.series-stats {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 1.5rem;
+	font-size: 0.9rem;
+}
+.stat-item {
+	text-align: center;
+}
+.stat-number {
+	font-weight: bold;
+	color: #764ba2;
+	font-size: 1.2rem;
+}
+.stat-label {
+	color: #999;
+	font-size: 0.8rem;
+}
+.series-price {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.price {
+	font-size: 1.3rem;
+	font-weight: bold;
+	color: #e74c3c;
+}
+.collect-btn {
+	background: linear-gradient(45deg, #667eea, #764ba2);
+	color: white;
+	border: none;
+	padding: 0.8rem 1.5rem;
+	border-radius: 25px;
+	cursor: pointer;
+	font-size: 0.9rem;
+	transition: transform 0.3s;
+}
+.collect-btn:hover {
+	transform: scale(1.05);
+}
+.rarity-badge {
+	position: absolute;
+	top: 1rem;
+	right: 1rem;
+	background: rgba(255,255,255,0.9);
+	padding: 0.3rem 0.8rem;
+	border-radius: 15px;
+	font-size: 0.8rem;
+	font-weight: bold;
+}
+.rarity-common {
+	color: #95a5a6;
+}
+.rarity-rare {
+	color: #3498db;
+}
+.rarity-epic {
+	color: #9b59b6;
+}
+.rarity-legendary {
+	color: #f39c12;
+}
+ @media (max-width: 768px) {
+.nav-links {
+	display: none;
+}
+.series-header h1 {
+	font-size: 2rem;
+}
+.series-grid {
+	grid-template-columns: 1fr;
+}
+.filter-tabs {
+	gap: 0.5rem;
+}
+.filter-tab {
+	padding: 0.6rem 1rem;
+	font-size: 0.9rem;
+}
+}
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+body {
+	font-family: 'Arial', sans-serif;
+	background: linear-gradient(135deg, #ff9a56 0%, #ff6b35 100%);
+	min-height: 100vh;
+	color: #333;
+}
+.navbar {
+	background: rgba(255, 255, 255, 0.95);
+	padding: 1rem 0;
+	position: fixed;
+	width: 100%;
+	top: 0;
+	z-index: 1000;
+	backdrop-filter: blur(10px);
+}
+.nav-container {
+	max-width: 1200px;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 2rem;
+}
+.logo {
+	font-size: 1.8rem;
+	font-weight: bold;
+	color: #ff6b35;
+}
+.nav-links {
+	display: flex;
+	list-style: none;
+	gap: 2rem;
+}
+.nav-links a {
+	text-decoration: none;
+	color: #333;
+	font-weight: 500;
+	transition: color 0.3s;
+}
+.nav-links a:hover {
+	color: #ff6b35;
+}
+.container {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 8rem 2rem 4rem;
+}
+.hero {
+	text-align: center;
+	margin-bottom: 4rem;
+}
+.hero h1 {
+	font-size: 3rem;
+	color: white;
+	margin-bottom: 1rem;
+	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+.hero p {
+	font-size: 1.2rem;
+	color: rgba(255, 255, 255, 0.9);
+	max-width: 600px;
+	margin: 0 auto;
+}
+.featured-sections {
+	grid-template-columns: repeat(3, 1fr);
+	gap: 2rem;
+	margin: 4rem 0;
+	display: flex;
+	justify-content: space-between; /* 或者使用 space-around */
+	width: 100%; /* 确保父容器占满宽度 */
+}
+.featured-card {
+	flex: 1; /* 让两个卡片平均分配剩余空间 */
+	margin: 0 10px; /* 可选：添加间距 */
+	background: white;
+	border-radius: 20px;
+	overflow: hidden;
+	box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+	transition: transform 0.3s, box-shadow 0.3s;
+	cursor: pointer;
+}
+.featured-card:hover {
+	transform: translateY(-10px);
+	box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+}
+.featured-image {
+	width: 100%;
+	height: 250px;
+	background-size: cover;
+	background-position: center;
+	position: relative;
+	overflow: hidden;
+}
+.featured-image.demon-slayer {
+	background: linear-gradient(45deg, #ff9a56, #ffd89b);
+}
+.featured-image.honor-of-kings {
+	background: linear-gradient(45deg, #ff6b35, #f7931e);
+}
+.featured-image.anime-heroes {
+	background: linear-gradient(45deg, #ff8a65, #ffab91);
+}
+.featured-image::before {
+	content: '';
+	position: absolute;
+	top: 5px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0, 0, 0, 0.1);
+}
+.featured-image img {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	top: 0;
+	left: 0;
+}
+.featured-content {
+	padding: 2rem;
+}
+.featured-title {
+	font-size: 1.5rem;
+	font-weight: bold;
+	color: #d84315;
+	margin-bottom: 1rem;
+	text-align: center;
+}
+.featured-description {
+	color: #666;
+	line-height: 1.6;
+	margin-bottom: 1.5rem;
+	font-size: 0.95rem;
+}
+.featured-highlights {
+	list-style: none;
+	margin-bottom: 1.5rem;
+}
+.featured-highlights li {
+	color: #777;
+	margin-bottom: 0.5rem;
+	padding-left: 1rem;
+	position: relative;
+	font-size: 0.9rem;
+}
+.featured-highlights li::before {
+	content: '•';
+	color: #ff6b35;
+	position: absolute;
+	left: 0;
+	font-weight: bold;
+}
+.products-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	gap: 2rem;
+	margin-top: 3rem;
+}
+.product-card {
+	background: white;
+	border-radius: 15px;
+	padding: 2rem;
+	text-align: center;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+	transition: transform 0.3s, box-shadow 0.3s;
+	cursor: pointer;
+}
+.product-card:hover {
+	transform: translateY(-10px);
+	box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+.product-image {
+	width: 200px;
+	height: 200px;
+	background: linear-gradient(45deg, #ff6b35, #ffd89b);
+	border-radius: 15px;
+	margin: 0 auto 1.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 4rem;
+	color: white;
+	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+.product-card h3 {
+	font-size: 1.5rem;
+	margin-bottom: 1rem;
+	color: #333;
+}
+.product-card p {
+	color: #666;
+	line-height: 1.6;
+	margin-bottom: 1.5rem;
+}
+.price {
+	font-size: 1.3rem;
+	font-weight: bold;
+	color: #d84315;
+	margin-bottom: 1rem;
+}
+.btn {
+	background: linear-gradient(45deg, #ff6b35, #ff9a56);
+	color: white;
+	border: none;
+	padding: 0.8rem 2rem;
+	border-radius: 25px;
+	cursor: pointer;
+	font-size: 1rem;
+	transition: transform 0.3s;
+}
+.btn:hover {
+	transform: scale(1.05);
+}
+/* 弹窗样式 */
+.modal {
+	display: none;
+	position: fixed;
+	z-index: 2000;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.8);
+	backdrop-filter: blur(5px);
+}
+.modal-content {
+	background-color: white;
+	margin: 5% auto;
+	padding: 2rem;
+	border-radius: 20px;
+	width: 90%;
+	max-width: 600px;
+	position: relative;
+	animation: modalSlideIn 0.3s ease-out;
+}
+.p1 {
+	margin-top: 10px;
+	font-family: '楷体', sans-serif;
+	font-size: 18px;
+	text-indent: 2em;
+	color: black;
+}
+ @keyframes modalSlideIn {
+ from {
+ opacity: 0;
+ transform: translateY(-50px);
+}
+to {
+	opacity: 1;
+	transform: translateY(0);
+}
+}
+.close {
+	color: #aaa;
+	float: right;
+	font-size: 2rem;
+	font-weight: bold;
+	cursor: pointer;
+	position: absolute;
+	right: 1rem;
+	top: 1rem;
+}
+.close:hover {
+	color: #333;
+}
+.modal h2 {
+	color: #ff6b35;
+	margin-bottom: 1rem;
+}
+.modal-image {
+	width: 150px;
+	height: 150px;
+	background: linear-gradient(45deg, #ff6b35, #ffd89b);
+	border-radius: 15px;
+	margin: 0 auto 1.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 3rem;
+	color: white;
+}
+ @media (max-width: 768px) {
+.nav-links {
+	display: none;
+}
+.hero h1 {
+	font-size: 2rem;
+}
+.featured-sections {
+	grid-template-columns: 1fr;
+}
+.products-grid {
+	grid-template-columns: 1fr;
+}
+}
+.series-grid1 {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+	gap: 2rem;
+	margin-top: 2rem;
+}
+.series-grid1 {
+	grid-template-columns: 1fr;
+}
+</style>
+    </head>
+    <body>
+<nav class="navbar">
+      <div class="nav-container">
+    <div class="logo">🎁 盲盒世界</div>
+    <ul class="nav-links">
+          <li><a href="index.html">首页</a></li>
+          <li><a href="story.html">灰塑艺术及其代表作品</a></li>
+          <li><a href="series.html">文创产品盲盒系列</a></li>
+          <li><a href="about.html">关于我们</a></li>
+        </ul>
+  </div>
+    </nav>
+<div class="container">
+      <div class="series-header">
+    <h1>全系列盲盒</h1>
+    <p align="center"  style="margin-top:10px;margin-bottom:20px; font-family: '宋体', ; font-size:25px">探索我们精心策划的各个主题系列，<br>
+    每个系列都有独特的故事和收藏价值</p>
+  </div>
+      <div class="products-grid">
+    <div class="product-card" onclick="openModal('modal1')">
+          <div class="product-image">🦇🦁🐟🦩</div>
+          <h3>动物系列设计</h3>
+          <p> 简化线条与块面化的噪点渐变，模拟灰泥层叠的立体质感<br>
+        每个都有独特的姿态和配色<br>
+      </p>
+          <button class="btn">查看详情</button>
+        </div>
+    <div class="product-card" onclick="openModal('modal2')">
+          <div class="product-image">👑☀️🌙🏮</div>
+          <h3>戏曲系列设计</h3>
+          <p>提取灰塑中常见的广西传统纹样, 对其进行几何化、抽象化的再设计，使其更符合现代审美。<br>
+      </p>
+          <button class="btn">查看详情</button>
+        </div>
+    <div class="product-card" onclick="openModal('modal3')">
+          <div class="product-image">🌸🌺🪷🎋</div>
+          <h3>植物系列设计</h3>
+          <p>采用简洁的线条勾勒轮廓，以鲜明且协调的色彩搭配赋予角色活力.</p>
+          <button class="btn">查看详情</button>
+        </div>
+  </div>
+    </div>
+
+<!-- 弹窗模态框 -->
+<div id="modal1" class="modal">
+      <div class="modal-content"> <span class="close" onclick="closeModal('modal1')">&times;</span>
+    <div class="modal-image">🦇🦁🐟🦩</div>
+    <h2>动物系列详情</h2>
+    <p><strong>系列理念介绍：</strong><br>
+         <strong> (1)①传统纹样运用：</strong><br>保留灰塑标志性的“石灰堆塑”肌理感，通过简化线条与块面化的噪点渐变，模拟灰泥层叠的立体质感。<br>
+       <strong>   ②提取灰塑题材的吉祥寓意：</strong><br>
+          蝙蝠（福运连绵）；<br>
+          狮子（狮来运转）；<br>
+          鳌鱼（独占鳌头）；<br>
+          仙鹤/孔雀（长寿）；<br>
+          金鱼（金玉满堂）。<br>
+          结合拟人化动态传递情感。如狮子灰塑以“蹲坐”姿态呈现，威严中透出憨态；仙鹤单足独立，传递优雅与灵性。</p>
+    <p>(2)通过灰塑特有的<strong style="color:#F93">“素灰点睛”技</strong>法，在灰色主色调中点缀少量矿物颜料,致敬传统匠人“以灰为骨，以色传神”的创作智慧。<br>
+          ①蝙蝠：机敏欢脱的“福气快递员”，翅膀可变形为祥云滑板。 <br>
+          ②狮子：外冷内萌的“守门神”，一圈灰塑鬃毛如火焰升腾。<br>
+          ③鳌鱼“跃龙门代言人”，鱼尾与龙角，象征逆流而上的拼搏精神。<br>
+          ④仙鹤：“非遗传承者”，羽翼展开呈现水墨画卷般的灰阶层次。<br>
+        </p>
+    <p><strong>稀有度：</strong>动物系列共有三款</p>
+    <p><strong>收集价值：</strong>★★★★☆</p>
+  </div>
+    </div>
+<div id="modal2" class="modal">
+      <div class="modal-content"> <span class="close" onclick="closeModal('modal2')">&times;</span>
+    <div class="modal-image">👑☀️🌙🏮</div>
+    <h2>戏曲系列详情</h2>
+    <p><strong>系列理念介绍：</strong><br>
+          <strong>(1)①传统纹样再设计：</strong><br>提取灰塑中常见的广西传统纹样（如壮锦纹、铜鼓纹、云雷纹等），对其进行几何化、抽象化的再设计，使其更符合现代审美。<br>
+        <strong>  ②符号化设计：</strong><br>将传统灰塑中的吉祥符号（如福字、祥云、龙凤等）进行符号化设计，作为角色的装饰元素，既保留文化内涵，又增强辨识度。<br>
+         <strong> ③提取灰塑题材的吉祥寓意：</strong><br>
+          加官进爵：象征升官发财、仕途顺利；<br>
+          日神：象征辟邪消灾、光明普照；<br>
+          月神：象征保佑祖祠、安乐和平；<br>
+          白素贞：象征情比金坚、忠贞不渝；<br>
+          小青：象征友谊常青、忠诚相伴。<br>
+        </p>
+    <p><strong>(2)地域特色</strong>
+          在细节设计中融入广西地域文化符号，强化IP的地域文化属性。<br>
+        </p>
+    <p><strong>形象设计：</strong>①加官进爵（取自加官进爵） 代号：“桂云仔”<br>
+          ②日神（取自日月神）
+          代号：“比耶爷”<br>
+          ③月神（取自日月神） 代号：“蝶梦娘”<br>
+          ④白素贞（取自断桥会） 代号：“情小白”<br>
+          ⑤小青（取自断桥会） 代号：“友小青”<br>
+        </p>
+    <p><strong>稀有度：</strong>戏曲系列共有五款</p>
+    <p><strong>收集价值：</strong>★★★☆☆</p>
+  </div>
+    </div>
+<div id="modal3" class="modal">
+      <div class="modal-content"> <span class="close" onclick="closeModal('modal3')">&times;</span>
+    <div class="modal-image">🌸🌺🪷🎋</div>
+    <h2>植物系列详情</h2>
+    <p><strong>系列理念介绍：</strong><br>
+         <strong> （1）设计语言现代化</strong><br>
+          深度挖掘灰塑中常见的植物形象，将其巧妙地进行拟人化设计。摒弃传统复杂的塑造方式，采用简洁的线条勾勒轮廓，以鲜明且协调的色彩搭配赋予角色活力，使这些拟人形象既保留灰塑古朴的韵味，又散发出现代时尚的气息。<br>
+          牡丹花：寓意富贵荣华、繁荣昌盛。<br>
+          木棉花：象征英雄气概与蓬勃向上的生命力。<br>
+          荷花：代表高洁品格，象征吉祥如意与美好爱情。<br>
+          葫芦：象征吉祥、福禄，福代表福气、幸福，禄象征功名利禄。<br>
+        <strong>  （2）形象设计</strong><br>
+          牡丹花（锦华郡主）：雍容华贵的郡主形象，以Q版展现娇俏又不失尊贵的气质<br>
+          木棉花（炽焰小侠）：朝气蓬勃的小侠士形象，突出其活泼勇敢。<br>
+          荷花（清涟仙子）：清新脱俗的仙子形象，纯洁善良，静美而不失力量。<br>
+          葫芦（福佑童子）：可爱讨喜的小葫芦形象，表达福运连连、幸福安康的美好期许。<br>
+        </p>
+    <p><strong>稀有度：</strong>植物系列共有四款</p>
+    <p><strong>收集价值：</strong>★★★★★</p>
+  </div>
+    </div>
+<div class="featured-sections">
+      <div class="featured-card">
+    <div class="featured-image demon-slayer" align="center" style="padding-left:10px" > <img src="imgas/动物款Lucky Beast“福在眼前”灰塑娃娃三视图.png" style="max-width: 100%; height: auto;"></div>
+    <div class="featured-content">
+          <p  style="color: #F93; font-size:14px; text-align:center">动物款Lucky Beast“福在眼前”灰塑娃娃三视图（设计师：冀常凯）</p>
+        </div>
+  </div>
+      <div class="featured-card">
+    <div class="featured-image honor-of-kings"  style="padding-top:20px; padding-left:10px" align="center"> <img src="imgas/Roaring Beast灰塑娃娃“万事如意”三视图.png"style="max-width: 100%; height: auto;"></div>
+    <div class="featured-content">
+          <p  style="color: #F93; font-size:14px;text-align:center">动物款灰塑盲盒Roaring Beast灰塑娃娃“万事如意”三视图（设计师：冀常凯）</p>
+        </div>
+  </div>
+      <div class="featured-card">
+    <div class="featured-image anime-heroes" style="padding-top:20px ; padding-left:10px"> <img src="imgas/Finbloom灰塑娃娃“金玉满堂”三视图.png" alt="二次元全明星系列图标" class="featured-icon" style="max-width: 100%; height: auto;"> </div>
+    <div class="featured-content">
+          <p  style="color: #F93; font-size:14px;text-align: center"> 动物款灰塑盲盒Finbloom灰塑娃娃“金玉满堂”三视图（设计师：冀常凯）</p>
+        </div>
+  </div>
+    </div>
+<div class="featured-sections">
+      <div class="featured-card">
+    <div class="featured-image demon-slayer"  align="center";style="padding-top:10px; padding-left:10px; padding-right:10px; padding-bottom:10px;"> <img src="imgas/“加官进爵”款灰塑娃娃三视图.png" style="max-width: 100%; height: auto;" ></div>
+    <div class="featured-content">
+          <p  style="color: #F93;font-size:14px; text-align:center">戏曲款“加官进爵”款灰塑娃娃三视图（设计师：曹芸菲）</p>
+          <ul class="featured-highlights">
+        <li>代号：“桂云仔”</li>
+        <li> 形象定位：善良机敏的小文官形象，Q版设计突出可爱与亲和力；</li>
+        <li>性格特征：乐观向上，做事认真负责，梦想是成为一位为民请命的好官</li>
+        <li>设计亮点：放大官帽流苏特征，使形象更协调、更具趣味性；</li>
+        <li>寓意：象征升官发财、仕途顺利，传递吉祥如意的美好祝愿。</li>
+      </ul>
+        </div>
+  </div>
+      <div class="featured-card">
+    <div class="featured-image honor-of-kings"  style="padding-top:20px; padding-left:10px"> <img src="imgas/“日神”款灰塑娃娃三视图.png" alt="王者荣耀系列图标" class="featured-icon" style="max-width: 100%; height: auto;"> </div>
+    <div class="featured-content">
+          <p  style="color: #F93;font-size:14px; text-align:center">戏曲款“日神”款灰塑娃娃三视图（设计师：曹芸菲）</p>
+          <div class="featured-description">代号：“比耶爷”</div>
+          <ul class="featured-highlights">
+        <li>形象定位：极具特色的“比耶神”，设计为可爱欢脱的小老头形象；</li>
+        <li>性格特征：幽默风趣，喜欢比耶手势，总是笑眯眯的，像个老顽童，但关键时刻非常可靠；</li>
+        <li>设计亮点：以夸张的表情和动态展现日神的活泼与亲和力；</li>
+        <li>寓意：象征消灾辟邪、光明普照，传递平安吉祥的美好寓意。</li>
+      </ul>
+        </div>
+  </div>
+      <div class="featured-card">
+    <div class="featured-image anime-heroes" style="padding-top:20px ; padding-left:10px"> <img src="imgas/“月神”款灰塑娃娃三视图.png" alt="二次元全明星系列图标" class="featured-icon" style="max-width: 100%; height: auto;"> </div>
+    <div class="featured-content">
+          <p  style="color: #F93;font-size:14px; text-align: center">戏曲款“月神”款灰塑娃娃三视图（设计师：曹芸菲）</p>
+          <ul class="featured-highlights">
+        <li>代号：“蝶梦娘”</li>
+        <li>形象定位：温柔美丽的“蝴蝶神”，结合灰塑原型与“庄周梦蝶”典故；</li>
+        <li>性格特征：温柔恬静，喜欢在月光下翩翩起舞，偶尔会有点小迷糊，但内心充满智慧；</li>
+        <li>设计亮点：放大月神的蝴蝶腰封象征，发髻形似蝴蝶展翅与桂林山峦轮廓，兼具“月”“夜晚”“睡梦”与“山水”的意象；</li>
+        <li>寓意：象征保佑祖祠、安乐和平，传递宁静祥和的美好愿景。</li>
+      </ul>
+        </div>
+  </div>
+    </div>
+<div class="featured-sections">
+      <div class="featured-card">
+    <div class="featured-image demon-slayer"   style="padding-top:20px; padding-left:10px"> <img src="imgas/“白素贞”款灰塑娃娃三视图.png" style="max-width: 100%; height: auto;"> </div>
+    <div class="featured-content">
+          <p  style="color: #F93; font-size:14px;text-align:center">戏曲款“白素贞”款灰塑娃娃三视图（设计师：曹芸菲）</p>
+          <ul class="featured-highlights">
+        <li> 代号：“情小白”</li>
+        <li>形象定位：极具广西地域特色的戏曲人物再设计，展现忠贞不渝的爱情；</li>
+        <li>性格特征：温婉大方，外柔内刚，对爱情坚定不移，偶尔会露出俏皮的一面；</li>
+        <li>设计亮点：服饰融合壮剧、桂剧等当地戏曲文化特点，突出广西传统戏曲文化的独特魅力；</li>
+        <li>寓意：象征情比金坚、忠贞不渝，传递爱情的美好与坚贞。</li>
+      </ul>
+        </div>
+  </div>
+      <div class="featured-card">
+    <div class="featured-image honor-of-kings"style="padding-top:20px; padding-left:10px"> <img src="imgas/“小青”款灰塑娃娃三视图.png" alt="王者荣耀系列图标" class="featured-icon" style="max-width: 100%; height: auto;"> </div>
+    <div class="featured-content">
+          <p  style="color: #F93;font-size:14px; text-align:center">戏曲款“小青”款灰塑娃娃三视图（设计师：曹芸菲）</p>
+          <ul class="featured-highlights">
+        <li> 代号：“友小青””</li>
+        <li>形象定位：极具广西地域特色的戏曲人物再设计，展现万古长青的友情；</li>
+        <li>性格特征：活泼开朗，直率勇敢，喜欢打抱不平，是个行动派，偶尔有点小冲动；</li>
+        <li>设计亮点：服饰融合壮剧、桂剧等当地戏曲文化特点，突出活泼灵动的个性特征；</li>
+        <li>寓意：象征友谊常青、忠诚相伴，传递友情的珍贵与永恒</li>
+      </ul>
+        </div>
+  </div>
+      <div class="featured-card">
+    <div class="featured-image anime-heroes"  style="padding-top:20px ; padding-left:10px"> <img src="imgas/“富贵吉祥”款灰塑娃娃三视图（.png" alt="二次元全明星系列图标" class="featured-icon" style="max-width: 100%; height: auto;"> </div>
+    <div class="featured-content">
+          <p  style="color: #F93; font-size:14px;text-align: center">植物款“富贵吉祥”款灰塑娃娃三视图（设计师：何晨菲）</p>
+        </div>
+  </div>
+    </div>
+<div class="featured-sections">
+      <div class="featured-card">
+    <div class="featured-image demon-slayer"  style="padding-top:20px; padding-left:10px"> <img src="imgas/“清涟仙子”款灰塑娃娃三视图.png" style="max-width: 100%; height: auto;"> </div>
+    <div class="featured-content">
+          <p  style="color: #F93; font-size:14px;text-align:center">植物款“清涟仙子”款灰塑娃娃三视图（设计师：何晨菲）</p>
+        </div>
+  </div>
+      <div class="featured-card">
+    <div class="featured-image honor-of-kings" style="padding-top:20px; padding-left:10px"> <img src="imgas/“福佑童子”款灰塑娃娃三视图.png" alt="王者荣耀系列图标" class="featured-icon" style="max-width: 100%; height: auto;"> </div>
+    <div class="featured-content">
+          <p  style="color: #F93;font-size:14px; text-align:center">植物款“福佑童子”款灰塑娃娃三视图（设计师：何晨菲）</p>
+        </div>
+  </div>
+      <div class="featured-card">
+    <div class="featured-image anime-heroes"   style="padding-top:20px ; padding-left:10px"> <img src="imgas/“炽焰小侠”款灰塑娃娃三视图.png" alt="二次元全明星系列图标" class="featured-icon" style="max-width: 100%; height: auto;"> </div>
+    <div class="featured-content">
+          <p  style="color: #F93;font-size:14px;  text-align: center">植物款“炽焰小侠”款灰塑娃娃三视图（设计师：何晨菲）</p>
+        </div>
+  </div>
+    </div>
+<div class="filter-tabs">
+      <button class="filter-tab active" data-category="all">全部系列建模</button>
+     
+    </div>
+<div class="series-grid">
+      <div class="series-card" data-category="fantasy">
+    <div class="series-banner" style="background: linear-gradient(45deg, #ff6b6b, #feca57);"> 
+       <div class="rarity-badge rarity-rare"></div>
+     </div>
+    <div class="series-info">
+          <div class="series-title">
+        <div align="center">狮子形象</div>
+      </div>
+          <div class="series-subtitle"  align="center">Lion image </div>
+          <div class="series-description">
+        <p><img src="imgas/Roaring Beast“万事如意”建模三视图.png" style="max-width: 100%; height: auto; > </div>
+                    <div class="series-stats">
+        <p><strong>造型特征：</strong>参考灰塑常见的祥瑞主题（如狮子、蝙蝠、仙鹤/孔雀、蛇，鳌鱼，金鱼），结合现代潮玩的“萌系”风格，将传统神兽拟人化。  <br>
+              <strong>头部：</strong>麒麟角象征祥，将瑞岭南传统瓦当纹样抽象化为发饰或耳部装饰。  <br>
+             <strong> 面部：</strong>圆润轮廓搭配灵动大眼，保留灰塑浮雕立体线条感，增强亲和力。  <br>
+             <strong> 身体：</strong>简化传统灰塑繁复纹样，以几何块面重组草龙纹，云纹吉祥图案。<br>
+            </p>
+        <div class="stat-item">
+              <div class="stat-number"></div>
+              <div class="stat-label"></div>
+            </div>
+        <div class="stat-item">
+              <div class="stat-number"></div>
+              <div class="stat-label"></div>
+            </div>
+        <div class="stat-item">
+              <div class="stat-number"></div>
+              <div class="stat-label"></div>
+            </div>
+      </div>
+          <div class="series-price">
+        <div class="price"></div>
+        <button class="collect-btn">开始收藏</button>
+      </div>
+        </div>
+  </div>
+      <div class="series-card" data-category="cute">
+    <div class="series-banner" style="background: linear-gradient(45deg, #ff9a9e, #fad0c4);"> 
+          <div class="rarity-badge rarity-rare"></div>
+        </div>
+    <div class="series-info">
+          <div class="series-title"  align="center">蝙蝠形象</div>
+          <div class="series-subtitle"  align="center">Bat image </div>
+          <div class="series-description">
+        <p><img src="imgas/Lucky Beast“福在眼前”灰塑娃娃建模三视图.png" style="max-width: 100%; height: auto;> </div>
+                    <div class="series-stats"></p>
+        <p><strong>造型特征：</strong>参考灰塑常见的祥瑞主题(如狮子、蝙蝠、仙鹤/孔雀、蛇,鳌鱼，金鱼)，结合现代潮玩的“萌系"风格，将传统神兽拟人化。<br>
+             <strong> 头部：</strong>头戴的帽子以蝙蝠元素为灵感，蝙蝠翅膀形状的装饰的造型。紫色头发自然垂下，增加了造型的柔和感。<br>
+              <strong>面部：</strong>大大的蓝色眼睛充满童真，传递出灵动可爱的感觉。脸颊的粉色点缀，就像灰塑中通过色彩来凸显人物的精气神。<br>
+              <strong>身体：</strong>整体身形圆润，呈现出坐着的姿态，脖颈处紫色祥云装饰，富有层次感。四肢的设计简洁，同时也展现出灰塑中对造型的简洁概括处理。<br>
+            </p>
+        <div class="stat-item">
+              <div class="stat-number"></div>
+              <div class="stat-label"></div>
+            </div>
+        <div class="stat-item">
+              <div class="stat-number"></div>
+              <div class="stat-label"></div>
+            </div>
+        <div class="stat-item">
+              <div class="stat-number"></div>
+              <div class="stat-label"></div>
+            </div>
+      </div>
+          <div class="series-price">
+        <div class="price"></div>
+        <button class="collect-btn">开始收藏</button>
+      </div>
+        </div>
+  </div>
+      <div class="series-card" data-category="sci-fi">
+    <div class="series-banner" style="background: linear-gradient(45deg, #667eea, #764ba2);">
+          <div class="rarity-badge rarity-legendary"></div>
+        </div>
+    <div class="series-info">
+          <div class="series-title">
+        <p  align="center"><strong>戏曲形象</strong><strong> </strong></p>
+      </div>
+          <div class="series-subtitle"  align="center">Opera Characters</div>
+          <div class="series-description">
+        <p><span class="series-grid1"><img src="imgas/戏曲款“加官进爵”灰塑娃娃建模三视图.png"style="max-width: 100%; height: auto;"></span></p>
+        <p><strong>造型特征：</strong><br>
+             <strong> 头部：</strong>头戴的戏曲盔帽极具特色，红色为主调，搭配蓝色、黄色装饰，盔帽上的立体部件和细节雕琢，凸显角色的身份地位。<br>
+              <strong>面部：</strong>大大的眼睛透着灵动，眉毛微微上扬，嘴角带笑，线条简洁但生动传神，能够快速传递角色的情绪。<br>
+             <strong> 身体：</strong>整体身形挺拔，身着传统戏曲服饰，服饰上的图案和配饰增加了立体感。衣服的剪裁和造型保留了戏曲服饰的宽松大气，在传统灰塑元素基础上进行创新，既保留韵味又符合现代审美。<br>
+            </p>
+      </div>
+          <!-- 注释内容 -->
+          <div class="series-stats">
+        <div class="stat-item">
+              <div class="stat-number"></div>
+              <div class="stat-label"></div>
+            </div>
+        <div class="stat-item">
+              <div class="stat-number"></div>
+              <div class="stat-label"></div>
+            </div>
+        <div class="stat-item">
+              <div class="stat-number"></div>
+              <div class="stat-label"></div>
+            </div>
+      </div>
+          <div class="series-price">
+        <div class="price"></div>
+        <button class="collect-btn">开始收藏</button>
+      </div>
+        </div>
+  </div>
+      <div class="series-card" data-category="anime">
+    <div class="series-banner" style="background: linear-gradient(45deg, #ffecd2, #fcb69f);"> 
+          <div class="rarity-badge rarity-epic"></div>
+        </div>
+    <div class="series-info">
+          <div class="series-title">
+        <p  align="center"><strong>植物娃娃</strong><strong> </strong></p>
+      </div>
+          <div class="series-subtitle"  align="center">Plant Doll</div>
+          <div class="series-description">
+        <p ><img src="imgas/植物款“富贵吉祥”灰塑娃娃建模三视图.png" style="max-width: 100%; height: auto;> </div>
+                    <div class="series-stats"></p>
+        <p ><strong>造型特征：</strong> <br>
+            <strong>  头部：</strong>借鉴了岭南灰塑的丰富装饰风格，头顶的绿色发箍及红花装饰造型，精致且灵动，头部造型可爱又具有传统韵味。 <br>
+           <strong>   面部：</strong>大大的圆眼睛充满童真，通过简洁的五官展现出纯真温和的神态，如同灰塑作品中人物传递出的质朴情感。 <br>
+            <strong>  身体：</strong>整体身形圆润可爱，服饰上的白色花纹及荷叶边裙摆等细节，增添了立体感与韵律感，既符合现代审美，又能让人联想到灰塑中丰富的造型变化。 </p>
+        <div class="stat-item">
+              <div class="stat-number"></div>
+              <div class="stat-label"></div>
+            </div>
+        <div class="stat-item">
+              <div class="stat-number"></div>
+              <div class="stat-label"></div>
+            </div>
+        <div class="stat-item">
+              <div class="stat-number"></div>
+              <div class="stat-label"></div>
+            </div>
+      </div>
+          <div class="series-price">
+        <div class="price"></div>
+        <button class="collect-btn">开始收藏</button>
+      </div>
+        </div>
+  </div>
+      <div class="series-card" data-category="fantasy">
+    <div class="series-banner" style="background: linear-gradient(45deg, #a8edea, #fed6e3);"> 
+          <div class="rarity-badge rarity-rare"></div>
+        </div>
+    <div class="series-info">
+          <div class="series-title">
+        <p  align="center" ><strong>木棉花娃娃</strong><strong> </strong></p>
+      </div>
+          <div class="series-subtitle"  align="center">Bauhinia Flower Doll</div>
+          <div class="series-description">
+        <p ><img src="imgas/植物款“炽焰小侠”灰塑娃娃建模三视图.png"  style="max-width: 100%; height: auto;"></p>
+        <p ><strong>造型特征:</strong>参考灰塑常见的植物主题，结合现代潮玩的&#8220;萌系"风格，将植物拟人化。 <br>
+             <strong> 头部：</strong>装饰有一朵大大的红色花朵，花瓣向外展开，形态夸张而生动，顶部还配有一片绿色的叶子作为点缀，整体给人一种活泼可爱、生机勃勃的感觉。 <br>
+             <strong> 面部：</strong>面部表情设计得十分可爱，眼睛大而圆，充满了童真与好奇；嘴巴微微上扬，仿佛在微笑，显得非常友好和愉快。面部的颜色以浅肤色为主，眼睛是黑色，嘴巴则是粉红色的，这样的色彩搭配使得整个面部更加生动、立体。 <br>
+            <strong>  身体：</strong>身体穿着一件白色的连衣裙，裙摆部分巧妙地融入了红色和绿色的装饰，这些装饰的形状类似于花瓣，与头部的花朵相呼应。连衣裙的设计简洁而不失童趣，既展现了少女的纯真与可爱，又体现了灰塑艺术的精湛技艺。 </p>
+      </div>
+          <div class="series-stats">
+        <div class="stat-item">
+              <div class="stat-number"></div>
+              <div class="stat-label"></div>
+            </div>
+        <div class="stat-item">
+              <div class="stat-number"></div>
+              <div class="stat-label"></div>
+            </div>
+        <div class="stat-item">
+              <div class="stat-number"></div>
+              <div class="stat-label"></div>
+            </div>
+      </div>
+          <div class="series-price">
+        <div class="price"></div>
+        <button class="collect-btn">开始收藏</button>
+      </div>
+        </div>
+  </div>
+      <div class="series-card" data-category="cute">
+    <div class="series-banner" style="background: linear-gradient(45deg, #ffd89b, #19547b);"> 
+          <div class="rarity-badge rarity-common"></div>
+        </div>
+    <div class="series-info">
+          <div class="series-title">
+        <p ><strong>鱼头娃娃</strong><strong> </strong></p>
+      </div>
+          <div class="series-subtitle">Fish Head Doll</div>
+          <div class="series-description">
+        <p ><img src="imgas/“Finbloom”灰塑娃娃建模三视图.png"  style="max-width: 100%; height: auto;"></p>
+        <p ><strong>造型特征:</strong>参考灰塑常见的祥瑞主题(如狮子、蝙蝠、仙鹤/孔雀、蛇,鳌鱼金鱼)，结合现代潮玩的&#8220;萌系"风格，将传统神兽拟人化。<strong> </strong><br>
+              <strong>头部：</strong>该盲盒造型的头部被巧妙地设计成鱼的形状，这一设计既独特又富有创意。头部的主色调为橙色，配以紫色的鱼鳍和鱼鳞，色彩鲜明且对比强烈，鱼的眼睛大而圆，显得非常灵动，增添了整个造型的生动感。 <br>
+             <strong> 面部：</strong>面部表情可爱至极，眼睛闪烁着蓝色的光芒，透露出友好和愉快的气息。面部皮肤为浅色，与整体造型的色彩形成柔和的过渡，使整体看起来更加和谐。嘴巴微微上扬，仿佛在微笑，脸颊上还有淡淡的红晕，更加凸显了其可爱与活泼的特点。 <br>
+             <strong> 身体：</strong>身体部分同样延续了鱼的设计元素，与头部完美衔接，形成一个整体感极强的造型。身体的主色调与头部保持一致，橙色与紫色的搭配依旧鲜明且富有活力。鱼鳍和鱼尾的设计精细且富有动感，使得整个造型更加栩栩如生。 </p>
+      </div>
+          <div class="series-stats">
+        <div class="stat-item">
+              <div class="stat-number"></div>
+              <div class="stat-label"></div>
+            </div>
+        <div class="stat-item">
+              <div class="stat-number"></div>
+              <div class="stat-label"></div>
+            </div>
+        <div class="stat-item">
+              <div class="stat-number"></div>
+              <div class="stat-label"></div>
+            </div>
+      </div>
+          <div class="series-price">
+        <div class="price"></div>
+        <button class="collect-btn">开始收藏</button>
+      </div>
+        </div>
+  </div>
+      <div class="series-card" data-category="cute">
+    <div class="series-banner" style="background: linear-gradient(45deg, #ffd89b, #19547b);"> 
+          <div class="rarity-badge rarity-common"></div>
+        </div>
+    <div class="series-info">
+          <div class="series-title">
+        <p ><strong>粉色戏曲娃娃</strong><strong> </strong></p>
+      </div>
+          <div class="series-subtitle">Pink Opera Doll</div>
+          <div class="series-description">
+        <p ><strong> <img src="imgas/戏曲款“白素贞”灰塑娃娃建模三视图.png"  style="max-width: 100%; height: auto;></p>
+                     
+                    </div>
+                    <div class="series-stats"></strong>
+            <p ><strong>造型特征:</strong>参考灰塑常见的非物质文化遗产主题，结合现代潮玩的“萌系"风格，将传统文化元素拟人化。<br>
+            <strong>  头部：</strong>头饰华丽繁复，这些色彩交织在一起，形成了强烈的视觉冲击力。发型为传统的双辫子样式，辫子上点缀着粉色的发饰，既体现了传统美感，又增添了几分俏皮与可爱。 <br>
+             <strong> 头部：</strong>头饰复杂而精致，融合了蓝色和金色的元素，顶部装饰有类似花朵的图案，两侧配以对称的耳环，增添了整体的华丽感。发型独特，以深蓝色为主，梳成双高发髻，发髻上点缀有装饰物，既体现了传统文化的韵味，又不失现代卡通的活泼。<br>
+             <strong> 面部：</strong>面部轮廓圆润，线条柔和，给人一种亲切可爱的感觉。眼睛大而明亮，闪烁着智慧与友善的光芒；鼻子和嘴巴小巧精致，整体表情温和友好，易于让人产生亲近感。<br>
+            <strong>  身体：</strong>身着传统风格的服装，色彩以蓝色、白色和粉色为主，搭配和谐且富有层次感。服装上饰有几何图案，既展现了传统文化的精髓，又增添了视觉上的美感。<br>
+              袖子宽大，飘逸灵动，符合传统服饰的特点。手中紧握书卷状物品，象征着文化或知识的传承，与非物质文化遗产的主题相呼应。
+            <div class="stat-item">
+              <div class="stat-number"></div>
+              <div class="stat-label"></div>
+            </div>
+        <div class="stat-item">
+              <div class="stat-number"></div>
+              <div class="stat-label"></div>
+            </div>
+        <div class="stat-item">
+              <div class="stat-number"></div>
+              <div class="stat-label"></div>
+            </div>
+      </div>
+          <div class="series-price">
+        <div class="price"></div>
+        <button class="collect-btn">开始收藏</button>
+      </div>
+        </div>
+  </div>
+      <div class="series-card" data-category="cute">
+    <div class="series-banner" style="background: linear-gradient(45deg, #ffd89b, #19547b);"> 
+          <div class="rarity-badge rarity-common"></div>
+        </div>
+    <div class="series-info">
+          <div class="series-title">
+        <p ><strong>蓝色戏曲娃娃</strong><strong> </strong></p>
+      </div>
+          <div class="series-subtitle">Blue pera Doll</div>
+          <div class="series-description">
+        <p ><strong><img src="imgas/戏曲款“月神”灰塑娃娃建模三视图.png" style="max-width: 100%; height: auto;></p>
+                     
+                    </div>
+                    <div class="series-stats"></strong>
+            <p ><strong>造型特征:<br>
+              </strong> 参考灰塑常见的非物质文化遗产主题，结合现代潮玩的“萌系"风格，将传统文化元素拟人化。<br>
+             <strong> 头部：</strong>该盲盒造型的头部被巧妙地设计成鱼的形状，这一设计既独特又富有创意。头部的主色调为橙色，配以紫色的鱼鳍和鱼鳞，色彩鲜明且对比强烈，鱼的眼睛大而圆，显得非常灵动，增添了整个造型的生动感。 <br>
+            <strong>  面部：</strong>面部表情可爱至极，眼睛闪烁着蓝色的光芒，透露出友好和愉快的气息。面部皮肤为浅色，与整体造型的色彩形成柔和的过渡，使整体看起来更加和谐。嘴巴微微上扬，仿佛在微笑，脸颊上还有淡淡的红晕，更加凸显了其可爱与活泼的特点。 <br>
+            <strong>  身体：</strong>身体部分同样延续了鱼的设计元素，与头部完美衔接，形成一个整体感极强的造型。身体的主色调与头部保持一致，橙色与紫色的搭配依旧鲜明且富有活力。鱼鳍和鱼尾的设计精细且富有动感，使得整个造型更加栩栩如生。
+            <div class="stat-item">
+              <div class="stat-number"></div>
+              <div class="stat-label"></div>
+            </div>
+        <div class="stat-item">
+              <div class="stat-number"></div>
+              <div class="stat-label"></div>
+            </div>
+        <div class="stat-item">
+              <div class="stat-number"></div>
+              <div class="stat-label"></div>
+            </div>
+      </div>
+          <div class="series-price">
+        <div class="price"></div>
+        <button class="collect-btn">开始收藏</button>
+      </div>
+        </div>
+  </div>
+    </div>
+    
+    <div style="display: flex; gap: 20px; margin-top:50px">
+      <div class="series-card" data-category="cute">
+    <div class="series-banner" style="background: linear-gradient(45deg, #ffd89b, #19547b);"> 
+          <div class="rarity-badge rarity-common"></div>
+        </div>
+    <div class="series-info" >
+          <div class="series-title"  style="margin-left:20px; margin-right:20px">
+        <p align="center"><strong>紫色戏曲娃娃</strong><strong> </strong></p>
+      </div>
+          <div class="series-subtitle" align="center">Purple Opera Doll Doll</div>
+          <div class="series-description" style="display:flex;  align-items: center;gap: 20px; ">
+        <p  align="center"><strong><img src="imgas/戏曲款“日神”灰塑娃娃建模三视图.png"  style="max-width: 100%; height: auto;>
+</p>
+                     
+                    </div>
+                    <div class="series-stats"></strong>
+            <p ><strong>造型特征:<br>
+              </strong> 参考灰塑常见的非物质文化遗产主题，结合现代潮玩的“萌系"风格，将传统文化元素拟人化。<br>
+             <strong> 头部：</strong>头戴紫色官帽，顶部圆润，边缘装饰有金色花纹，显得庄重华贵。两侧有蓝绿色的羽翼状装饰，增添了灵动性。帽子两侧还带有写有文字和图案的牌饰，丰富了视觉元素，凸显角色身份。<br>
+              <strong>面部：</strong>大大的黑色圆眼睛，眼神透着温和与睿智，给人亲切感。白色的长胡须垂至胸前，是传统老者形象的典型特征，配合淡淡的眉毛和小巧的嘴巴，整体表情和蔼慈祥。 <br>
+             <strong> 身体：</strong>身着紫色为主色调的长袍，袖口和下摆处有黄色镶边，形成鲜明对比。腰间束着棕色腰带，让身形更显利落。衣服上还带有精致的蓝色花纹装饰，增加了细节感。双臂自然伸展，双腿分开站立，姿态端正，展现出稳重的气质。
+            <div class="stat-item">
+              <div class="stat-number"></div>
+              <div class="stat-label"></div>
+            </div>
+        <div class="stat-item">
+              <div class="stat-number"></div>
+              <div class="stat-label"></div>
+            </div>
+        <div class="stat-item">
+              <div class="stat-number"></div>
+              <div class="stat-label"></div>
+            </div>
+      </div>
+          <div class="series-price">
+        <div class="price"></div>
+        <button class="collect-btn">开始收藏</button>
+      </div>
+        </div>
+  </div>
+      <div class="series-card" data-category="cute">
+    <div class="series-banner" style="background: linear-gradient(45deg, #ffd89b, #19547b);"> 
+          <div class="rarity-badge rarity-common"></div>
+        </div>
+    <div class="series-info">
+          <div class="series-title">
+        <p align="center"><strong>葫芦娃娃</strong><strong> </strong></p>
+      </div>
+          <div class="series-subtitle" align="center">Pumpkin Doll</div>
+          <div class="series-description" style="display:flex;  align-items: center;gap: 20px; ">
+        <p align="center"> <strong><img src="imgas/植物款“福佑童子”灰塑娃娃建模三视图.png" style="max-width: 100%; height: auto;></p>
+                     
+                    </div>
+                    <div class="series-stats"></strong>
+            <p><strong>造型特征: </strong> 参考灰塑常见的植物主题，结合现代潮玩的“萌系"风格，将植物拟人化。<br>
+              <strong>头部：</strong>整体类似葫芦形状，顶部有类似葫芦柄的装饰，还系着带有穗子的红色装饰带，增添了活泼感。蓝绿色的头发呈波浪状，与主体的暖色调形成对比，突出了角色特点。<br>
+              <strong>面部：</strong>面大大的眼睛占据面部较大比例，眼神略显无辜，增强了角色的可爱感。眉毛纤细，嘴巴小巧，整体面部表情简洁，却能给人留下深刻印象。 <br>
+              <strong>身体：</strong>身体同样是葫芦造型，与头部相呼应，形成统一的整体。没有过多复杂的肢体设计，双腿短小，让形象显得憨态可掬，符合当下流行的萌系风格。
+            <div class="stat-item">
+              <div class="stat-number"></div>
+              <div class="stat-label"></div>
+            </div>
+        <div class="stat-item">
+              <div class="stat-number"></div>
+              <div class="stat-label"></div>
+            </div>
+        <div class="stat-item">
+              <div class="stat-number"></div>
+              <div class="stat-label"></div>
+            </div>
+      </div>
+          <div class="series-price">
+        <div class="price">¥</div>
+        <button class="collect-btn">开始收藏</button>
+      </div>
+        </div>
+  </div>
+    </div>
+    
+    
+     <!-- 注释内容灰塑盲盒外观 -->
+    
+    <div style="display: flex; gap: 20px; margin-top:50px">
+      <div class="series-card" data-category="cute">
+    <div class="series-banner" style="background: linear-gradient(45deg, #ffd89b, #19547b);"> 
+       包装设计
+        </div>
+    <div class="series-info" >
+          <div class="series-title"  style="margin-left:20px; margin-right:20px">
+           <h3 align="center">  GreyDoll卡通形象包装盒设计说明</h3>
+       <p style="margin-top:20px;margin-bottom:10px; font-family: '楷体', KaiTi, KaiTi_GB2312, sans-serif; color: black; text-indent:2em">这款以"GreyDoll"为核心的卡通形象包装盒设计，通过极具感染力的视觉语言与文化融合策略，构建出兼具年轻化、艺术性与商业价值的包装体系，完美诠释了"传统非遗×现代美学×沉浸体验"的跨界理念。</p>
+      </div>
+         
+      <div class="series-description" style="display:flex;  align-items: center;gap: 20px; ">
+        <p  align="center"><strong><img src="../imgas/Grey Doll黄色盲盒包装展示图.png"  style="max-width: 100%; height: auto; display:flex;">Grey Doll黄色盲盒包装展示图
+        
+        <p align="center">  <img src="../imgas/Grey Doll黄色盲盒包装展开图.png"   style="max-width: 100%; height: auto;"> <br>Grey Doll黄色盲盒包装展开图 
+        <p align="center"><img src="../imgas/Grey Doll绿色盲盒包装展开图.png"   style="max-width: 100%; height: auto;"><br> 
+       Grey Doll绿色盲盒包装展开图 </p>
+</p></p>
+     
+      </div>
+      <div>
+      <p class="p1">​<strong>1.色彩情绪场精准构建​​：</strong>以85%明度柠檬黄为主色，辅以60%-70%饱和度的钴蓝、珊瑚粉，结合哑光珠光工艺，提升40%用户注目时长，契合Z世代高活力偏好与玩具消费场景。</p>
+                        
+     <p class="p1">​​<strong>2.叙事性视觉系统创新​​：</strong>盒面“蜂窝矩阵”排布9个灰塑工艺卡通形象，融合传统镂空纹样与动漫大眼设计，服饰纹样取材闽南雕花；侧面立体折页嵌入工艺流程图，实现包装互动科普功能。</p>
+                        
+      <p class="p1">​​<strong>3.品牌标识沉浸渗透​​：</strong>琥珀渐变字体嵌金箔纹理，搭配灰塑印章超级符号，通过3处触点布局强化记忆，衔接品牌与非遗合作背景。</p>
+                        
+      <p class="p1">​​​<strong>4.文化赋能商业转化​​：</strong>内置可拆卸灰塑挂娃模型，溢价提升25%；附《图鉴》手册及作者署名，构建文化生态链。测试显示认知度89%，传播率超行业均值3倍，达成文化IP资产化与商业增长双向循环。</p>
+   </div>
+    </div>
+    </div>
+</div>
+
+
+<div style="margin-top:50px; font-size:28px" align="center">   
+  <p>版权：Grey Doll 团队</p>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+ 
+ 
+</div>
+
+<script>
+        // 筛选功能
+        const filterTabs = document.querySelectorAll('.filter-tab');
+        const seriesCards = document.querySelectorAll('.series-card');
+
+        filterTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                // 移除所有活动状态
+                filterTabs.forEach(t => t.classList.remove('active'));
+                // 添加当前活动状态
+                this.classList.add('active');
+
+                const category = this.getAttribute('data-category');
+
+                // 筛选卡片
+                seriesCards.forEach(card => {
+                    const cardCategory = card.getAttribute('data-category');
+                    
+                    if (category === 'all' || cardCategory === category) {
+                        card.classList.remove('hidden');
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+            });
+        });
+
+        // 收藏按钮点击效果
+        document.querySelectorAll('.collect-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                
+                const originalText = this.textContent;
+                this.textContent = '已添加到收藏';
+                this.style.background = '#27ae60';
+                
+                setTimeout(() => {
+                    this.textContent = originalText;
+                    this.style.background = 'linear-gradient(45deg, #667eea, #764ba2)';
+                }, 2000);
+            });
+        });
+
+        // 卡片悬停效果增强
+        seriesCards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-15px) scale(1.03)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script> 
+<script>
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // 点击模态框外部关闭
+        window.onclick = function (event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        }
+
+        // 添加卡片悬停效果
+        document.querySelectorAll('.product-card, .featured-card').forEach(card => {
+            card.addEventListener('mouseenter', function () {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+
+            card.addEventListener('mouseleave', function () {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+
+</body>
+</html>
