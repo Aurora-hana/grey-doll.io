@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于我们 - 盲盒世界</title>
+    <style>
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+body {
+	font-family: 'Arial', sans-serif;
+	background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+	min-height: 100vh;
+	color: #333;
+	  font-family: 'Arial', sans-serif;
+    background: linear-gradient(rgba(44, 62, 80, 0.7), rgba(52, 152, 219, 0.7));
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    color: #333
+}
+.navbar {
+	background: rgba(255, 255, 255, 0.95);
+	padding: 1rem 0;
+	position: fixed;
+	width: 100%;
+	top: 0;
+	z-index: 1000;
+	backdrop-filter: blur(10px);
+}
+.nav-container {
+	max-width: 1200px;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 2rem;
+}
+.logo {
+	font-size: 1.8rem;
+	font-weight: bold;
+	color: #764ba2;
+}
+.nav-links {
+	display: flex;
+	list-style: none;
+	gap: 2rem;
+}
+.nav-links a {
+	text-decoration: none;
+	color: #333;
+	font-weight: 500;
+	transition: color 0.3s;
+}
+.nav-links a:hover {
+	color: #764ba2;
+}
+.container {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 8rem 2rem 4rem;
+}
+.about-header {
+	text-align: center;
+	margin-bottom: 4rem;
+}
+.about-header h1 {
+	font-size: 3rem;
+	color: white;
+	margin-bottom: 1rem;
+	text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+.about-header p {
+	font-size: 1.2rem;
+	color: rgba(255,255,255,0.9);
+	max-width: 600px;
+	margin: 0 auto;
+}
+.about-content {
+
+	grid-template-columns: 1fr 1fr;
+	gap: 4rem;
+	margin-bottom: 4rem;
+}
+.about-text {
+	background: white;
+	padding: 3rem;
+	border-radius: 20px;
+	box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+.about-text h2 {
+	color: #764ba2;
+	font-size: 2rem;
+	margin-bottom: 1.5rem;
+}
+.about-text p {
+	line-height: 1.8;
+	color: #666;
+	margin-bottom: 1.5rem;
+	font-size: 1.1rem;
+}
+.about-image {
+	background: linear-gradient(45deg, #ff6b6b, #feca57);
+	border-radius: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 8rem;
+	color: white;
+	text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+	position: relative;
+	overflow: hidden;
+}
+.about-image::before {
+	content: '';
+	position: absolute;
+	top: -50%;
+	left: -50%;
+	width: 200%;
+	height: 200%;
+	background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+	transform: rotate(45deg);
+	animation: shine 4s infinite;
+}
+ @keyframes shine {
+ 0% {
+transform: translateX(-100%) translateY(-100%) rotate(45deg);
+}
+ 50% {
+transform: translateX(100%) translateY(100%) rotate(45deg);
+}
+ 100% {
+transform: translateX(-100%) translateY(-100%) rotate(45deg);
+}
+}
+.team-section {
+	margin: 4rem 0;
+}
+.team-title {
+	text-align: center;
+	font-size: 2.5rem;
+	color: white;
+	margin-bottom: 3rem;
+	text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+.team-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	gap: 2rem;
+}
+.team-member {
+	background: white;
+	padding: 2rem;
+	border-radius: 20px;
+	text-align: center;
+	box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+	transition: transform 0.3s;
+}
+.team-member:hover {
+	transform: translateY(-10px);
+}
+.member-avatar {
+	width: 100px;
+	height: 100px;
+	background: linear-gradient(45deg, #667eea, #764ba2);
+	border-radius: 50%;
+	margin: 0 auto 1rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 2rem;
+	color: white;
+}
+.member-name {
+	font-size: 1.3rem;
+	font-weight: bold;
+	color: #333;
+	margin-bottom: 0.5rem;
+}
+.member-role {
+	color: #764ba2;
+	font-weight: 500;
+	margin-bottom: 1rem;
+}
+.member-description {
+	color: #666;
+	line-height: 1.6;
+	font-size: 0.9rem;
+}
+.values-section {
+	background: white;
+	padding: 4rem;
+	border-radius: 20px;
+	margin: 4rem 0;
+	box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+.values-title {
+	text-align: center;
+	font-size: 2.5rem;
+	color: #764ba2;
+	margin-bottom: 3rem;
+}
+.values-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	gap: 3rem;
+}
+.value-item {
+	text-align: center;
+}
+.value-icon {
+	width: 80px;
+	height: 80px;
+	background: linear-gradient(45deg, #ff6b6b, #feca57);
+	border-radius: 50%;
+	margin: 0 auto 1.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 2rem;
+	color: white;
+}
+.value-title {
+	font-size: 1.3rem;
+	font-weight: bold;
+	color: #333;
+	margin-bottom: 1rem;
+}
+.value-description {
+	color: #666;
+	line-height: 1.6;
+}
+.contact-section {
+	background: rgba(255,255,255,0.1);
+	padding: 3rem;
+	border-radius: 20px;
+	text-align: center;
+	backdrop-filter: blur(10px);
+}
+.contact-title {
+	font-size: 2rem;
+	color: white;
+	margin-bottom: 1.5rem;
+}
+.contact-info {
+	display: flex;
+	justify-content: center;
+	gap: 3rem;
+	flex-wrap: wrap;
+}
+.contact-item {
+	color: rgba(255,255,255,0.9);
+	font-size: 1.1rem;
+}
+.contact-item strong {
+	color: white;
+}
+ @media (max-width: 768px) {
+.nav-links {
+	display: none;
+}
+.about-header h1 {
+	font-size: 2rem;
+}
+.about-content {	
+	display: grid;
+	grid-template-columns: 1fr;
+    gap: 4rem;
+    margin-bottom: 4rem;
+	max-width:100%;
+	height:auto;
+}
+.about-text {
+	padding: 2rem;
+}
+.team-grid {
+	grid-template-columns: 1fr;
+}
+.values-section {
+	padding: 2rem;
+}
+.contact-info {
+	flex-direction: column;
+	gap: 1rem;
+}
+}
+</style>
+    </head>
+    <body>
+<nav class="navbar">
+      <div class="nav-container">
+    <div class="logo">🎁 盲盒世界</div>
+    <ul class="nav-links">
+          <li><a href="index.html">首页</a></li>
+          <li><a href="story.html">灰塑艺术及其代表作品</a></li>
+          <li><a href="series.html">文创产品盲盒系列</a></li>
+          <li><a href="about.html">关于我们</a></li>
+        </ul>
+  </div>
+    </nav>
+<div class="container">
+<div class="about-header">
+      <h1>关于灰塑 Grey Doll</h1>
+      <p>我们致力于为每一位收藏爱好者带来最优质的盲盒体验，创造属于你的惊喜时刻</p>
+    </div>
+    <div>
+<div class="about-content" >
+  <div class="about-text" >
+    <h2>我们的故事</h2>
+    <p style="text-indent:2em";> 以灰塑文化为内核，突破传统非遗产品“静态展示”的局限，通过“萌趣IP+场景化应用+互动体验”的设计逻辑，将非遗灰塑转化为年轻人喜爱的符号化载体，打造兼具文化内涵与潮流属性的沉浸式文创产品，构建“看得见、摸得着、玩得懂”的非遗传播新场景。总之，Grey Doll以“让灰塑从屋脊跳进掌心”为创意原点，通过产品年轻化、体验游戏化、传播社交化的策略，构建非遗与Z世代的对话新场景，实现文化记忆的轻量化传承。 </p>
+    <p style="text-indent:2em";> 针对岭南地区的宗祠宗族文化浓厚、民间信俗具有独特代表性等综合特点，本品牌挖掘提炼出灰塑作为设计基础，通过科技和工艺结合，让灰塑“活”在当下，通过IP叙事将灰塑从建筑构件转化为有温度的文化角色，重塑非遗的当代意义。</p>
+    <p style="text-indent:2em";>“让灰塑从屋脊跳进掌心”始终是我们的创意原点，灰塑作为一种古老的建筑装饰艺术，在传播上，本身就因为其存在形式、建筑依托、气候环境而受到非常大的流动和体验限制，多数人只能通过到具体旅游景点或者文物保护场所而远距离欣赏，造成这一艺术不能广泛地融入公众视野中。同时，如今岭南地区对于灰塑产业的传承普遍缺乏重视和保护，文化场所（主要是祠堂庙宇等）的“空心化”也造成了一定的传播障碍。灰塑本身的制作工艺周期长、程序复杂，也难以进行批量流水线生产。Grey Doll为灰塑的流动、传播提供了新的方式。</p>
+    <p style="text-indent:2em">本品牌将依托岭南地区的地域文化，以GreyDoll为载体，串联灰塑、粤语俚语、两广美食等元素，输出可感知的岭南生活美学，刺激更多旅游者、年轻群体购买欲望，带来更高层面的视觉刺激和精神刺激，融传统、实用、时尚、有趣等特点于一体。 </p>
+    <p style="text-indent:2em";> 总体来说，Grey Doll品牌和一系列文化产品具有现代创新意义，解决“灰塑”的传播难题，以及为岭南地区的元素挖掘、人文形象增添了许多亮色，也为其他非遗的传播传承提供了很好的改造、升级创意范本。 </p>
+  </div>
+ 
+    </div>
+         <div  class="about-content">
+    <div  class="about-text"  style="background-color:#FFF"  >
+          <h2>我们的LOGO设计</h2>
+         <p align="center"> <img  src="imgas/“Grey Doll”原创LOGO.png" width="434" height="254" alt="LOGO" ></p>
+          <p style="text-indent:2em"> GreyDoll拥有一款年轻、潮流的logo图标。寓意着“创新”的基本理念，结合灰塑非遗文化的深厚底蕴与盲盒潮玩的年轻化、潮流化特点，打造一个兼具传统与现代感的视觉符号。通过马卡龙色系的渐变色彩、缺角圆润方块状字母图标和字母设计，传递出品牌的年轻化、潮流化定位与精致、神秘、探索的品牌调性。</p>
+          <p style="text-indent:2em"><strong>主色调是马卡龙色系的蓝、黄、粉三色渐变，</strong>寓意灰塑文化在新时代的创新与蜕变，同时符合盲盒精致美的审美设计。
+        呈平行透视的方块状图标是方形盲盒的象征，盲盒主要视觉呈现的盲盒公仔侧面剪影形象立 于logo左侧，具有神秘性与未知性，增强探索乐趣，等待观者探索。</p>
+          <p style="text-indent:2em"> 上下结构的设计也寓意着灰塑所依赖的传统建筑的屋顶，纵深错杂的宗祠庙宇守护着千年的灰塑智慧，同时寓意着灰塑盲盒包装上的二维码特色，通过扫描二维码这一新时代媒介的运用与传统灰塑的碰撞，发现一个更美丽的灰塑世界。</p>
+          <p style="text-indent:2em; color:#F96" > 字母的设计运用大写英文“G”、“D”，置于logo主体部分，将“GreyDoll”拆分为“Grey”、“Doll”，而除去主体部分的“G”与“D”，其余的“rey”、“oll”部分分别列于“G”与“D”后，占主体宽度的四分之一。缺角圆润的字体让logo更加具有辨识度和活力感，充满了现代未来感。</p>
+        </div>
+  </div>
+  </div>
+<div class="team-section">
+<h2 class="team-title">我们的团队</h2>
+<div class="team-grid">
+      <div class="team-member">
+    <div class="member-avatar">👨‍💼</div>
+    <div class="member-name">
+          <p >马振允</p>
+        </div>
+    <div class="member-role">团队负责人 </div>
+    <div class="member-description">
+          <p align="left" style="text-indent:2em">作为团队负责人，曾在上市公司德邦证券进行假期实习工作并优秀结业，随机应变能力强；带队经验充足，曾获中国国际创新大赛省赛铜奖，致力于推广灰塑文化，团队管理能力已形成"战略规划-执行落地-复盘迭代"的完整闭环，兼具国际化视野与本土实践智慧。 </div>
+  </div>
+      <div class="team-member">
+     <div class="member-avatar">👨‍💼</div>
+    <div class="member-name">
+          <p >冀常凯</p>
+        </div>
+    <div class="member-role">首席设计师</div>
+    <div class="member-description"> <p align="left" style="text-indent:2em"> 擅长绘本海报设计，形象设计，动画设计；负责其中产品外观和部分结构设计，，严谨的学术逻辑转化为富有情感共鸣的美术设计解决方案。</p></div>
+  </div>
+      <div class="team-member">
+    <div class="member-avatar">👨‍💻</div>
+    <div class="member-name">张西贝妮</div>
+    <div class="member-role">技术总监</div>
+    <div class="member-description">  <p align="left" style="text-indent:2em">负责其中产品外观和部分结构设计，也常主动参与小组项目，负责建模环节，通过不断与团队成员沟通协作，优化模型细节。</p></div>
+  </div>
+      <div class="team-member">
+    <div class="member-avatar">👩‍💼</div>
+    <div class="member-name">谢心怡</div>
+    <div class="member-role">外联宣传总监</div>
+    <div class="member-description"> <p align="left" style="text-indent:2em"> 在项目中，致力于通过创新的宣传方式，结合短视频、图文推送、互动活动等多种形式，利用抖音、小红书等平台来提升文创产品的知名度和影响力。 </p></div>
+  </div>
+      <div class="team-member">
+   <div class="member-avatar">👨‍💼</div>
+    <div class="member-name">张东升</div>
+    <div class="member-role">财务总监</div>
+    <div class="member-description" > <p align="left" style="text-indent:2em">负责管理和协调财务的多个方面，从制定详细的财务计划和目标，到管理团队成员与供应商对接，精准协调各类资源与流程，会定期监督和评估部门工作效率与绩效，通过数据复盘优化工作流程，提升整体效益 ，致力于推动各项工作高效开展. </p></div>
+  </div>
+      <div class="team-member">
+    <div class="member-avatar">👩‍🎨</div>
+    <div class="member-name">胡润元</div>
+    <div class="member-role">项目第二主持人</div>
+    <div class="member-description" ><p align="left" style="text-indent:2em"> 擅长编程、设计与书法等，为人细心，眼光长远，负责团队的协调组织、企业的管理体系建设，制订开发维护标准并且能够带领自己的团队完成相关技术工作，在具有优秀的技术开发背景和技术管理能力之外，也有着很强的团队建设管理和沟通能力。熟悉项目运营和传媒宣传，接触摄影、配音、脚本方案策划等工作,文字功底突出。</p></div>
+  </div>
+      <div class="team-member">
+    <div class="member-avatar">👩‍💼</div>
+    <div class="member-name">黄君钰</div>
+    <div class="member-role">团队成员</div>
+    <div class="member-description" >负责 </div>
+  </div>
+      <div class="team-member">
+    <div class="member-avatar">👩‍💼</div>
+    <div class="member-name">曾华娇</div>
+    <div class="member-role">团队成员</div>
+    <div class="member-description" >负责 </div>
+  </div>
+    </div>
+<div class="values-section">
+      <h2 class="values-title">我们的价值观</h2>
+      <div class="values-grid">
+    <div class="value-item">
+          <div class="value-icon">✨</div>
+          <div class="value-title">创新设计</div>
+          <div class="value-description"><p align="left" style="text-indent:2em"> 我们坚持原创设计，每个系列都有独特的故事背景和艺术风格，
+        为收藏者带来全新的视觉体验。 </p>
+        </div>
+        </div>
+    <div class="value-item">
+          <div class="value-icon">🏆</div>
+          <div class="value-title">品质至上</div>
+          <div class="value-description">
+          <p align="left" style="text-indent:2em"> 从材料选择到生产工艺，我们严格把控每一个环节，确保每个产品都达到最高的品质标准。 </p></div>
+        </div>
+    <div class="value-item">
+          <div class="value-icon">❤️</div>
+          <div class="value-title">用户体验</div>
+          <div class="value-description"> <p align="left" style="text-indent:2em">我们始终以用户为中心，不断优化产品和服务，
+        致力于为每位用户创造最佳的收藏体验。 </p></div>
+        </div>
+  </div>
+    </div>
+<div class="team-section">
+<h2 class="team-title">指导顾问及Grey Doll合作公司</h2>
+<div class="team-grid">
+<div class="team-member">
+      <div class="member-avatar">👨‍💼</div>
+      <div class="member-name">
+    <p >邵成村师傅</p>
+  </div>
+      <div class="member-role">创意造型总监</div>
+      <div class="member-description">
+    <p align="left" style="text-indent:2em">邵成村师傅，国家级非物质文化遗产项目灰塑代表性传承人，荣获“广东省传统建筑名匠”的称号，精通灰塑工艺技巧，带领灰塑修复队在广东、广西、香港、澳门、韩国等地区和国家从事灰塑修复和文化传承活动。</p> 
+     <p align="left" style="text-indent:2em">他制作了《麒麟吐玉书》《对墙》《垂脊》等优秀灰塑作品，凭借作品获得多个奖项，使面临失传的灰塑工艺不断得到发扬光大。  邵师傅是本款产品的创意造型总监，负责提供艺术产品的定型建议。</p>
+    <p align="left" style="text-indent:2em"> Grey Doll品牌团队已经和邵师傅保持了长达一年的合作与实地对话，未来Grey Doll公司的经济收益将有一部分分红回馈，用于支持邵师傅的非遗保护工作。</p>
+  </div>
+    </div>
+<div class="team-member">
+      <div class="member-avatar">👩‍🎨</div>
+      <div class="member-name">
+    <p >武海燕老师</p>
+  </div>
+      <div class="member-role">项目指导教师</div>
+      <div class="member-description">
+    <p align="left" style="text-indent:2em"> 指导学生参加中国国际“互联网+”大学生创新创业大赛广西赛区选拔赛金奖2项，银奖3项、铜奖3项；指导学生完成国家级创新创业训练项目2项、广西区级项目2项。</p>
+  </div>
+    </div>
+<div class="team-member">
+      <div class="member-avatar">👨‍💻</div>
+      <div class="member-name">王霖老师</div>
+      <div class="member-role">技术指导教师</div>
+      <div class="member-description">
+    <p align="left" style="text-indent:2em"> 曾参加澳大利亚新南威尔士大学（UNSW）“职业英语&领导力”提升项目。参与并指导第五届至第八届互联网+大赛获区赛金银铜奖累计30余项。
+    </p>
+    <p align="left" style="text-indent:2em"> 参加科技部主办第九届中国创新创业大赛区赛获优秀奖。第六届中国国际“互联网+”大学生创新创业大赛广西区优秀创新创业导师。擅长指导美术创作与美术培训、乐器培训、商业演出、汽车美容与机修改装、餐饮服务、文创衍生、影视创作与服务、少数民族文化挖掘等专业。 </p>
+  </div>
+    </div>
+<div class="team-member">
+      <div class="member-avatar">👩‍💼</div>
+      <div class="member-name">广州光影凡尘文化传媒有限责任公司</div>
+      <div class="member-role">文化宣传拍摄媒体</div>
+      <div class="member-description">
+    <p align="left" style="text-indent:2em"> 创立于2015年，是一家全面、专业的一站式影视传媒公司拥有一支经验丰富的资深团队，拥有丰富的拍摄经验，其中公司负责广州市花都区圆玄中学灰塑工作坊宣传片的拍摄，将灰塑工艺走入广州校园的现状呈现在大众视野中，为大众提供了深入了解灰塑工艺的途径。该公司长期为文化宣传单位进行拍摄工作，足迹遍布全球。</p>
+    <p align="left" style="text-indent:2em">凡尘团队与项目负责人保持长期合作两年，并和邵师傅有五年时间的长期联系与合作，并多次和文旅局、博物馆等单位保持合作，凡尘团队将为Grey Doll提供媒体流量与宣传支持。</p>
+  </div>
+    </div>
+   
+
+    </div>
+
+<script>
+        // 添加滚动动画效果
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.team-member, .value-item');
+            
+            elements.forEach(element => {
+                const rect = element.getBoundingClientRect();
+                const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+                
+                if (isVisible) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        }
+
+        // 初始化动画
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+
+        // 团队成员卡片点击效果
+        document.querySelectorAll('.team-member').forEach(member => {
+            member.addEventListener('click', function() {
+                this.style.transform = 'translateY(-15px) scale(1.05)';
+                setTimeout(() => {
+                    this.style.transform = 'translateY(-10px) scale(1)';
+                }, 200);
+            });
+        });
+
+        // 价值观图标旋转效果
+        document.querySelectorAll('.value-icon').forEach(icon => {
+            icon.addEventListener('mouseenter', function() {
+                this.style.transform = 'rotate(360deg)';
+                this.style.transition = 'transform 0.6s ease';
+            });
+            
+            icon.addEventListener('mouseleave', function() {
+                this.style.transform = 'rotate(0deg)';
+            });
+        });
+    </script>
+     </div>
+      <p  align="center" style="margin-top:20px;margin-bottom:10px; font-family: '楷体'; font-size:24px;color: black; max-width:100%; height: auto; align="center"  > 版权所有Grey Doll 邮箱：xxxxxxxx@xxx.com  地址：xxxxxxxx</p>
+      </body>
+</html>

@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>灰塑文化 - 神秘的起源</title>
+    <style>
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+body {
+	font-family: 'Arial', sans-serif;
+	background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+	min-height: 100vh;
+	color: #333;
+	  font-family: 'Arial', sans-serif;
+    background: linear-gradient(rgba(44, 62, 80, 0.7), rgba(52, 152, 219, 0.7));
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    color: #333;
+}
+.navbar {
+	background: rgba(255, 255, 255, 0.95);
+	padding: 1rem 0;
+	position: fixed;
+	width: 100%;
+	top: 0;
+	z-index: 1000;
+	backdrop-filter: blur(10px);
+}
+.nav-container {
+	max-width: 1200px;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 2rem;
+}
+.logo {
+	font-size: 1.8rem;
+	font-weight: bold;
+	color: #764ba2;
+}
+.nav-links {
+	display: flex;
+	list-style: none;
+	gap: 2rem;
+}
+.nav-links a {
+	text-decoration: none;
+	color: #333;
+	font-weight: 500;
+	transition: color 0.3s;
+}
+.nav-links a:hover {
+	color: #764ba2;
+}
+.container {
+	max-width: 1000px;
+	margin: 0 auto;
+	padding: 8rem 2rem 4rem;
+}
+.story-header {
+	text-align: center;
+	margin-bottom: 4rem;
+}
+.story-header h1 {
+	font-size: 3rem;
+	color: white;
+	margin-bottom: 1rem;
+	text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+.story-header p {
+	font-size: 1.2rem;
+	color: rgba(255,255,255,0.9);
+	max-width: 600px;
+	margin: 0 auto;
+}
+.story-timeline {
+	position: relative;
+	margin: 3rem 0;
+}
+.timeline-line {
+	position: absolute;
+	left: 50%;
+	top: 0;
+	bottom: 0;
+	width: 4px;
+	background: linear-gradient(to bottom, #3498db, #9b59b6);
+	transform: translateX(-50%);
+}
+.story-item {
+	display: flex;
+	margin-bottom: 4rem;
+	position: relative;
+}
+.story-item:nth-child(even) {
+	flex-direction: row-reverse;
+}
+.story-content {
+	background: white;
+	padding: 2rem;
+	border-radius: 15px;
+	box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+	width: 45%;
+	position: relative;
+	animation: fadeInUp 0.6s ease-out;
+}
+.story-item:nth-child(even) .story-content {
+	animation: fadeInLeft 0.6s ease-out;
+}
+.story-item:nth-child(odd) .story-content {
+	animation: fadeInRight 0.6s ease-out;
+}
+ @keyframes fadeInUp {
+ from {
+ opacity: 0;
+ transform: translateY(30px);
+}
+to {
+	opacity: 1;
+	transform: translateY(0);
+}
+}
+ @keyframes fadeInLeft {
+ from {
+ opacity: 0;
+ transform: translateX(-30px);
+}
+to {
+	opacity: 1;
+	transform: translateX(0);
+}
+}
+ @keyframes fadeInRight {
+ from {
+ opacity: 0;
+ transform: translateX(30px);
+}
+to {
+	opacity: 1;
+	transform: translateX(0);
+}
+}
+.story-icon {
+	position: absolute;
+	left: 50%;
+	top: 2rem;
+	transform: translateX(-50%);
+	width: 60px;
+	height: 60px;
+	background: linear-gradient(45deg, #3498db, #9b59b6);
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 1.5rem;
+	color: white;
+	z-index: 10;
+}
+.story-year {
+	font-size: 1.5rem;
+	font-weight: bold;
+	color: #3498db;
+	margin-bottom: 1rem;
+}
+.story-title {
+	font-size: 1.3rem;
+	font-weight: bold;
+	color: #333;
+	margin-bottom: 1rem;
+}
+.story-text {
+	color: #666;
+	line-height: 1.8;
+	font-size: 1rem;
+}
+.mystery-box {
+	background: linear-gradient(45deg, #ff6b6b, #feca57);
+	color: white;
+	padding: 3rem;
+	border-radius: 20px;
+	text-align: center;
+	margin: 4rem 0;
+	box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+}
+.mystery-box h2 {
+	font-size: 2rem;
+	margin-bottom: 1rem;
+}
+.mystery-box p {
+	font-size: 1.1rem;
+	line-height: 1.6;
+}
+ @media (max-width: 768px) {
+.nav-links {
+	display: none;
+}
+.story-header h1 {
+	font-size: 2rem;
+}
+.timeline-line {
+	left: 2rem;
+}
+.story-item {
+	flex-direction: column !important;
+	margin-left: 4rem;
+}
+.story-content {
+	width: 100%;
+}
+.story-icon {
+	left: 2rem;
+}
+}
+</style>
+    </head>
+    <body>
+<nav class="navbar">
+      <div class="nav-container">
+    <div class="logo">🎁 盲盒世界</div>
+    <ul class="nav-links">
+          <li><a href="index.html">首页</a></li>
+          <li><a href="story.html">灰塑艺术及其代表作品</a></li>
+          <li><a href="series.html">文创产品盲盒系列</a></li>
+          <li><a href="about.html">关于我们</a></li>
+        </ul>
+  </div>
+    </nav>
+<div class="container">
+      <div class="story-header">
+    <h1>灰塑艺术及其代表作品</h1>
+    <p  align="left">探索灰塑文化的特征，设计相对应的文创盲盒产品，了解这个充满惊喜的收藏世界的诞生和演变。</p>
+  </div>
+      <div class="story-timeline">
+    <div class="timeline-line"></div>
+    <div class="story-item">
+          <div class="story-content">
+        <div class="story-year">灰塑文化</div>
+        <div class="story-text">
+              <p  style="text-indent:2em;">灰塑，古称&#8220;灰批&#8221;，又名堆灰，是从砖雕和泥塑两种技艺派生出来的一种室外传统建筑装饰艺术，是岭南建筑的传统装饰，是我国民间工艺的瑰宝。材料以石灰为主，作品依附于建筑墙壁上沿和屋脊上或其他建筑工艺上，渊源甚早，以明清两代最为盛行，尤以祠堂、寺庙和豪门大宅用得最多。 <br>
+          <p  style="text-indent:2em;">2008年6月7日，灰塑经国务院批准列入第二批国家级非物质文化遗产名录。灰塑工艺精细，立体感强、色彩丰富；题材广泛，通俗易懂，符合地域性特征，通常是花鸟鱼虫、民间故事、瑞兽书法等同音同义的形象表达，在要求图案美观的同时蕴含美好的寓意，反映了传统文化中对美的追求和人民祈求吉祥纳福的美好愿望。</p>
+              </p>
+            </div>
+      </div>
+          <div class="story-icon">🎌</div>
+        </div>
+    <div class="story-item">
+          <div class="story-content">
+        <div class="story-year">灰塑艺术的历史渊源</div>
+        <div class="story-text">
+              <p >2008年6月7日，灰塑经国务院批准列入第二批国家级非物质文化遗产名录。灰塑工艺精细，立体感强、色彩丰富；题材广泛，通俗易懂，符合地域性特征，通常是花鸟鱼虫、民间故事、瑞兽书法等同音同义的形象表达，在要求图案美观的同时蕴含美好的寓意，反映了传统文化中对美的追求和人民祈求吉祥纳福的美好愿望
+            。 </p>
+            </div>
+      </div>
+          <div class="story-icon">🎰</div>
+        </div>
+    <div class="story-item">
+          <div class="story-content">
+        <div class="story-year">
+              <p >代表性灰塑作品欣赏</p>
+            </div>
+        <div class="story-text">
+          <p>1.陈家祠</p>
+          <p>2. 资政大夫祠</p>
+          <p>3. 顺德清晖园</p>
+          <p>4.香港灰塑景观集锦</p>
+          <p><a href="https://lingnanhuisu.gdut.edu.cn/hsjg.htm">灰塑景观</a></p>
+        </div>
+      </div>
+          <div class="story-icon">📦</div>
+        </div>
+    <div class="story-item">
+          <div class="story-content">
+        <div class="story-year">
+              <p >特色灰塑艺术</p>
+            </div>
+        <div class="story-title"></div>
+        <div class="story-text">
+          <p>&nbsp;</p>
+          <p><img src="../imgas/works-ima/八仙 邵成村 2019.jpeg" style=" max-width:100%; height:auto" alt="八仙 邵成村 2019"></p>
+          <p align="center">八仙 邵成村 2019...</p>
+          
+        </div>
+      </div>
+          <div class="story-icon">💥</div>
+        </div>
+    <div class="story-item">
+          <div class="story-content">
+        <div class="story-year">
+              <p >灰塑元素在文创产品中的应用</p>
+            </div>
+        <div class="story-title">多元化发展</div>
+        <div class="story-text">
+          <ul>
+            <li>•<strong>盲盒外包装​</strong>​：采用环保材料，融入灰塑元素与岭南文化符号，红为主色、绿为辅色，展现独特魅力与文化内涵。还附有动态动画二维码，供顾客了解灰塑知识，设置趣味题目助其欣赏。
+            </li>
+            <li>•<strong>盲盒公仔​</strong>​：每个盲盒含独特公仔，形态各异，展现灰塑与岭南文化魅力。主题多样，含经典与创新设计，满足不同需求。每系列有隐藏款，浓缩更多文化精髓，凸显灰塑魅力。            </li>
+            <li>•<strong>收藏卡片​</strong>​：为每款公仔配备，附带视频二维码，可看动态形象与灰塑应用，证明其独特性与收藏价值，满足&ldquo;集卡&rdquo;心理。            </li>
+            <li>•<strong>附加礼品​</strong>​：部分盲盒含灰塑制作工具、文创周边等，增加趣味性与互动性。            </li>
+          </ul>
+        </div>
+      </div>
+          <div class="story-icon">🌟</div>
+        </div>
+  </div>
+
+ 
+  
+  <div class="mystery-box">
+    <h2>🎁 Grey Doll的魅力所在——文化创新与传承的意义</h2>
+    <p align="left" style="text-indent:2em"> Grey Doll（灰塑娃娃） 不仅仅是一个商品，更是一种生活态度和情感体验。它代表着对未知的期待，对惊喜的渴望，以及收藏的乐趣。
+          每一次开启盲盒的瞬间，都是一次小小的冒险，一次与命运的邂逅。这种独特的体验让盲盒成为了连接人与人、
+          过去与未来的神奇纽带。 </p>
+  </div>
+    </div>
+    <div style="margin-top:50px" align="center">  版权所有Grey Doll 邮箱：xxxxxxxx@xxx.com  地址：xxxxxx</div>
+<script>
+        // 添加滚动动画效果
+        function animateOnScroll() {
+            const storyItems = document.querySelectorAll('.story-item');
+            
+            storyItems.forEach(item => {
+                const rect = item.getBoundingClientRect();
+                const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+                
+                if (isVisible) {
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0)';
+                }
+            });
+        }
+
+        // 初始化动画
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+
+        // 添加时间线点击效果
+        document.querySelectorAll('.story-icon').forEach(icon => {
+            icon.addEventListener('click', function() {
+                this.style.transform = 'translateX(-50%) scale(1.2)';
+                setTimeout(() => {
+                    this.style.transform = 'translateX(-50%) scale(1)';
+                }, 200);
+            });
+        });
+    </script>
+</body>
+</html>
