@@ -53,6 +53,7 @@ body {
 	color: #ff6b35;
 }
 .container {
+	width：100%;
 	max-width: 1200px;
 	margin: 0 auto;
 	padding: 8rem 2rem 4rem;
@@ -471,6 +472,7 @@ body, td, th {
       <li><a href="story.html">灰塑艺术代表作品</a></li>
       <li><a href="series.html">文创产品盲盒系列</a></li>
       <li><a href="about.html">关于我们</a></li>
+      <li> <a href="community2.html">交流社区</a></li>
     </ul>
   </div>
 </nav>
@@ -482,6 +484,27 @@ body, td, th {
       <source src="vedio/广西灰灰成品(1).mp4" ;type=" vedio/广西灰灰成品(1).mp4" >
     </video>
   </div>
+   <!-- 弹性布局容器：所有样式直接内联在style属性中 -->
+    <div style="display: flex; justify-content: space-around; align-items: flex-start; gap: 20px; padding: 20px; flex-wrap: wrap;">
+        <!-- 第一个视频项：内联样式控制宽高 -->
+        <div style="flex: 1; min-width: 300px; max-width: 500px;">
+            <h2 style="font-size: 1.2rem; color: #333; margin-bottom: 10px; text-align: center;">鱼头娃娃</h2>
+            <video controls style="width: 100%; height: auto; border-radius: 8px;">
+                <source src="vedio/video2.mp4" type="video/mp4">
+                你的浏览器不支持HTML5 video标签，请升级至最新浏览器。
+            </video>
+        </div>
+
+        <!-- 第二个视频项：与第一个视频项样式保持一致 -->
+        <div style="flex: 1; min-width: 300px; max-width: 500px;">
+            <h2 style="font-size: 1.2rem; color: #333; margin-bottom: 10px; text-align: center;">财神爷</h2>
+            <video controls style="width: 100%; height: auto; border-radius: 8px;">
+                <source src="vedio/财神爷video3.mp4" type="video/mp4">
+                你的浏览器不支持HTML5 video标签，请升级至最新浏览器。
+            </video>
+        </div>
+    </div>
+ 
   <p  style="margin-top:10px;margin-bottom:10px; font-family: '宋体', ; font-size:25px">每一个盒子都是一个惊喜，每一次开启都是一场冒险。探索未知，收集惊喜，让生活充满期待！</p>
 </div>
 <div style="margin-top:20px; background-color:#FFF;" >
@@ -533,6 +556,7 @@ body, td, th {
     <p class="p1" style="margin-top:10px"> 2.按“浅→深”逐层加色，每层间隔3–4 h，最后以黑色勾线。</p>
     <p class="p1" style="margin-top:10px"> 3.完成后保持2天适宜湿度，让颜料充分吸收，确保颜色持久不褪，至此灰塑工艺全部完成。 </p>
     <h2 style="margin-top:20px;margin-bottom:10px; font-family: '楷体', KaiTi, KaiTi_GB2312, sans-serif; color: black;"  >制作工序</h2>
+ 
     <p class="p1" style="margin-top:20px;margin-bottom:20px">灰塑制作一般包括五个基本步骤：</p>
     <p class="p1" style="margin-top:5px" > <strong>1.炼制灰泥</strong>,是灰塑关键，需将石灰特殊加工成兼具强度与塑性的材料。分"草筋灰""纸筋灰"两类，通过调整稻草或草纸配比制成。制作时先充分混合石灰和水，经反复舂打至浆体细腻黏稠（称"舂灰"），再密封养护15天以上（称"养灰"），最后捶打至拉丝状。熟练艺人会添加红糖、糯米粉提升黏性与控干效果，确保灰泥满足复杂造型需求。</p>
     <p class="p1" style="margin-top:10px"><strong>2.构图,</strong>艺人根据建筑空间和装饰部位的需要，直接在建筑物上设计图案，并根据装饰部位的不同，结合其实用功能，采用不同的表现形式、装饰手法和构图内容。灰塑装饰没有程式化的模式，全由艺人在现场施工制作，因而具有很大的灵活性和随意性。</p>
@@ -571,5 +595,6 @@ body, td, th {
 </div>
 
    <p  align="center" style="margin-top:20px;margin-bottom:10px; font-family: '楷体'; font-size:24px;color: black; max-width:100%; height: auto; align="center"  > 版权所有Grey Doll 邮箱：xxxxxxxx@xxx.com  地址：xxxxxxxx</p>
+
 </body>
 </html>

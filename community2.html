@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>灰韵匠心 - 灰塑文化爱好者社区</title>
+    <style>
+        /* 全局样式重置与基础配置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "微软雅黑", "宋体", Arial, sans-serif;
+        }
+
+        /* 灰塑主题渐变背景 + 纹理效果（营造复古质感） */
+        body {
+            background: linear-gradient(135deg, #f5e9d8 0%, #e6d3b8 50%, #d4b98c 100%);
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23b89f7a' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            min-height: 100vh;
+            padding-bottom: 50px;
+        }
+
+        /* 头部导航栏：替换为图二橙色系 + Grey Doll标题 + 新导航文字 */
+        header {
+            background: #ff8a5c; /* 匹配图二橙色背景 */
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5L35 20H55L40 35L45 55L30 45L15 55L20 35L5 20H25L30 5Z' fill='%23ffffff' fill-opacity='0.05'/%3E%3C/svg%3E");
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), 0 8px 24px rgba(255, 138, 92, 0.1);
+            padding: 1.2rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            border-bottom: 3px solid #e86a3c; /* 深橙色边框匹配图二 */
+            border-top: 2px solid #ffb28f;
+        }
+
+        .header-container {
+            width: 90%;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /*  Logo：灰塑狮子造型 + 渐变填充 */
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #ffb28f, #ff8a5c, #e86a3c);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #e86a3c;
+            box-shadow: 0 0 10px rgba(232, 106, 60, 0.3), inset 0 0 10px rgba(255, 138, 92, 0.2);
+            font-size: 1.8rem;
+            color: #8c301c;
+            font-weight: bold;
+            position: relative;
+        }
+
+        /* Logo上添加灰塑小狮子装饰 */
+        .logo-icon::before {
+            content: "";
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 15px;
+            height: 15px;
+            background: #e86a3c;
+            border-radius: 50%;
+            box-shadow: 0 0 5px rgba(232, 106, 60, 0.5);
+        }
+
+        /* 替换为图二的Grey Doll标题 + 礼物图标 */
+        .logo-text {
+            color: #333;
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1), 0 0 10px rgba(255, 178, 143, 0.5);
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-text::before {
+            content: "🎁";
+            margin-right: 8px;
+            transform: scale(1.2);
+        }
+
+        .logo-text span {
+            color: #8c301c;
+            text-shadow: 0 0 15px rgba(140, 48, 28, 0.8);
+        }
+
+        /* 导航菜单：横向排列 + 适配橙色风格 */
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #333;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+            position: relative;
+        }
+
+        /* 导航栏hover：橙色渐变下划线 + 发光效果 */
+        .nav-links a::before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #ffb28f, #e86a3c);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #8c301c;
+            text-shadow: 0 0 10px rgba(140, 48, 28, 0.8);
+        }
+
+        .nav-links a:hover::before {
+            width: 100%;
+        }
+
+        /* 主容器：居中 + 宽度控制 + 相对定位（避开顶部装饰条） */
+        .main-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 2rem auto;
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            position: relative;
+            z-index: 2;
+            padding-top: 20px;
+        }
+
+        /* 灰塑主题标题：鳌鱼装饰边框 + 金玉渐变文字 + 阴影发光 */
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #8c301c;
+            position: relative;
+            padding: 1.5rem 0;
+            margin-bottom: 1rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(140, 93, 42, 0.2);
+        }
+
+        /* 标题两侧：灰塑鳌鱼造型装饰 */
+        .section-title::before,
+        .section-title::after {
+            content: "";
+            position: absolute;
+            width: 120px;
+            height: 60px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-image: url("data:image/svg+xml,%3Csvg width='120' height='60' viewBox='0 0 120 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 30Q30 10, 60 30T120 30' stroke='%23e86a3c' stroke-width='2' fill='none'/%3E%3Cpath d='M30 30C40 20, 50 20, 60 30C70 40, 80 40, 90 30' fill='%23ff8a5c' fill-opacity='0.5'/%3E%3Ccircle cx='70' cy='25' r='5' fill='%23e86a3c'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+        }
+
+        .section-title::before {
+            left: 5%;
+            transform: translateY(-50%) scaleX(-1); /* 左侧镜像翻转 */
+        }
+
+        .section-title::after {
+            right: 5%;
+        }
+
+        .section-title span {
+            background: linear-gradient(135deg, #ffb28f, #ff8a5c, #e86a3c, #8c301c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* 标题下方：橙色渐变下划线 */
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, #ffb28f, #e86a3c, #ffb28f, transparent);
+            border-radius: 2px;
+            box-shadow: 0 0 10px rgba(255, 178, 143, 0.5);
+        }
+
+        /* 发帖表单容器：灰塑雕花卡片 + 立体阴影 + 橙色装饰 */
+        .post-form-card {
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 8px 24px rgba(255, 138, 92, 0.3), 0 12px 36px rgba(232, 106, 60, 0.15);
+            padding: 2.5rem;
+            border: 2px solid #ffb28f;
+            border-left: 4px solid #e86a3c;
+            border-right: 4px solid #ffb28f;
+            position: relative;
+            overflow: hidden;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0L100 100M100 0L0 100' stroke='%23f5e9d8' stroke-width='1' fill='none' stroke-opacity='0.5'/%3E%3C/svg%3E");
+            background-size: 20px;
+        }
+
+        /* 表单背景：灰塑狮子+金元宝装饰淡影（右上角） */
+        .post-form-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 250px;
+            height: 250px;
+            background-image: url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M100 50C120 50 140 70 140 90S120 130 100 130C80 130 60 110 60 90S80 50 100 50Z' fill='%23ff8a5c' fill-opacity='0.03'/%3E%3Cpath d='M80 90C80 80 90 70 100 70C110 70 120 80 120 90' fill='%23e86a3c' fill-opacity='0.02'/%3E%3Ccircle cx='90' cy='85' r='3' fill='%238c301c' fill-opacity='0.05'/%3E%3Ccircle cx='110' cy='85' r='3' fill='%238c301c' fill-opacity='0.05'/%3E%3Cpath d='M70 150L130 150L120 170L80 170L70 150Z' fill='%23ffb28f' fill-opacity='0.04'/%3E%3Cpath d='M90 130L110 130L105 140L95 140L90 130Z' fill='%23e86a3c' fill-opacity='0.05'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            z-index: 0;
+            opacity: 0.8;
+        }
+
+        /* 表单左侧：橙色渐变竖条装饰（鳌鱼纹理） */
+        .post-form-card::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 10px;
+            height: 100%;
+            background: linear-gradient(180deg, #e86a3c, #ffb28f, #ff8a5c, #e86a3c);
+            background-size: 100% 50px;
+            border-radius: 0 5px 5px 0;
+        }
+
+        /* 表单内容区：相对定位，覆盖装饰层 */
+        .form-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+        }
+
+        /* 表单输入项样式：橙色质感边框 + 聚焦发光动效 */
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            position: relative;
+        }
+
+        /* 表单标签：添加金元宝小装饰 */
+        .form-group label {
+            font-size: 1.1rem;
+            color: #ff8a5c;
+            font-weight: 600;
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .form-group label::before {
+            content: "💰";
+            position: absolute;
+            left: -5px;
+            top: 0;
+            transform: scale(0.8);
+            opacity: 0.7;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            padding: 1.2rem;
+            border: 2px solid #ffb28f;
+            border-radius: 12px;
+            font-size: 1rem;
+            color: #8c301c;
+            background-color: #fdfaf6;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 2px 4px rgba(255, 138, 92, 0.05);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #e86a3c;
+            box-shadow: 0 0 12px rgba(232, 106, 60, 0.2), inset 0 2px 4px rgba(255, 138, 92, 0.1);
+            background-color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .form-group textarea {
+            min-height: 220px;
+            resize: vertical;
+            line-height: 1.6;
+            background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='10' cy='10' r='1' fill='%23ffb28f' fill-opacity='0.5'/%3E%3C/svg%3E");
+            background-size: 20px;
+        }
+
+        /* 发帖按钮：橙色渐变 + 立体hover + 狮子阴影 */
+        .submit-btn {
+            background: linear-gradient(135deg, #e86a3c, #ff8a5c, #ffb28f);
+            background-size: 200% 200%;
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            padding: 1.2rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.5s ease;
+            box-shadow: 0 4px 12px rgba(232, 106, 60, 0.3), 0 0 20px rgba(255, 178, 143, 0.2);
+            align-self: flex-end;
+            width: 220px;
+            position: relative;
+            overflow: hidden;
+            animation: gradientMove 3s ease infinite alternate;
+        }
+
+        /* 按钮渐变流动动画 */
+        @keyframes gradientMove {
+            0% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(135deg, #c93e28, #e86a3c, #ff8a5c);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 8px 20px rgba(232, 106, 60, 0.4), 0 0 30px rgba(255, 178, 143, 0.3);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0) scale(1);
+        }
+
+        /* 按钮上添加灰塑狮子小图标 */
+        .submit-btn::before {
+            content: "🦁";
+            margin-right: 8px;
+            transform: scale(1.2);
+        }
+
+        /* 帖子展示区：网格布局 + 自适应 + 间距优化 */
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        /* 单个帖子卡片：灰塑雕花卡片 + hover立体动效 + 橙色装饰 */
+        .post-card {
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 6px 18px rgba(255, 138, 92, 0.2), 0 0 10px rgba(255, 178, 143, 0.1);
+            padding: 2rem;
+            border: 2px solid #ffb28f;
+            border-top: 3px solid #ffb28f;
+            border-bottom: 3px solid #e86a3c;
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+            background-image: url("data:image/svg+xml,%3Csvg width='50' height='50' viewBox='0 0 50 50' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M25 5L30 20H50L35 35L40 55L25 45L10 55L15 35L0 20H20L25 5Z' fill='%23f5e9d8' fill-opacity='0.1'/%3E%3C/svg%3E");
+        }
+
+        /* 卡片顶部：灰塑鳌鱼渐变条（hover显现并流动） */
+        .post-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, #ffb28f, #e86a3c, #ff8a5c, #ffb28f);
+            background-size: 200% 100%;
+            opacity: 0;
+            transition: all 0.5s ease;
+            animation: barMove 3s ease infinite alternate;
+        }
+
+        @keyframes barMove {
+            0% {
+                background-position: 0% 0%;
+            }
+            100% {
+                background-position: 100% 0%;
+            }
+        }
+
+        /* 卡片右侧：橙色金元宝竖条装饰 */
+        .post-card::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 8px;
+            height: 100%;
+            background: linear-gradient(180deg, transparent, #ffb28f, transparent);
+            opacity: 0.3;
+            transition: all 0.5s ease;
+            border-radius: 5px 0 0 5px;
+        }
+
+        .post-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(255, 138, 92, 0.3), 0 0 20px rgba(255, 178, 143, 0.2);
+        }
+
+        .post-card:hover::before {
+            opacity: 1;
+        }
+
+        .post-card:hover::after {
+            opacity: 0.8;
+            width: 12px;
+        }
+
+        /* 帖子分类：橙色标签样式 + 金元宝装饰 */
+        .post-category {
+            display: inline-block;
+
+            background: linear-gradient(90deg, #f5e9d8, #ffb28f);
+            color: #8c301c;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ff8a5c;
+            box-shadow: 0 2px 4px rgba(255, 138, 92, 0.1);
+            position: relative;
+        }
+
+        .post-category::before {
+            content: "🏮";
+            margin-right: 5px;
+            transform: scale(0.8);
+        }
+
+        .post-title {
+            font-size: 1.6rem;
+            color: #8c301c;
+            margin-bottom: 1.2rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px dashed #ffb28f;
+            text-shadow: 1px 1px 2px rgba(140, 93, 42, 0.1);
+        }
+
+        .post-content {
+            color: #8c301c;
+            line-height: 1.7;
+            margin-bottom: 1.8rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            padding: 0 0.5rem;
+        }
+
+        .post-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #ff8a5c;
+            font-size: 0.9rem;
+            padding-top: 1rem;
+            border-top: 1px solid #f5e9d8;
+        }
+
+        /* 帖子元数据：添加小图标装饰 */
+        .post-meta span:first-child::before {
+            content: "👤";
+            margin-right: 5px;
+        }
+
+        .post-meta span:last-child::before {
+            content: "📅";
+            margin-right: 5px;
+        }
+
+        /* 响应式适配：手机端调整布局，保留视觉效果 */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0.5rem;
+            }
+
+            .section-title::before,
+            .section-title::after {
+                width: 80px;
+                height: 40px;
+            }
+
+            .submit-btn {
+                width: 100%;
+            }
+
+            .posts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部导航栏（横向排列） -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <div class="logo-icon">灰</div>
+                <div class="logo-text">Grey Doll <span>· 灰塑文化社区</span></div>
+            </div>
+            <nav class="navbar">
+                <ul class="nav-links">
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="story.html">灰塑艺术代表作品</a></li>
+                    <li><a href="series.html">文创产品盲盒系列</a></li>
+                    <li><a href="about.html">关于我们</a></li>
+                    <li><a href="community2.html">交流社区</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 主内容容器 -->
+    <div class="main-container">
+        <!-- 发帖区域（新增发帖人ID输入框） -->
+        <section>
+            <h2 class="section-title">分享你的<span>灰塑故事</span> · 发布新帖</h2>
+            <div class="post-form-card">
+                <div class="form-content">
+                    <form id="grayPlasticPostForm">
+                        <!-- 新增：发帖人ID输入框 -->
+                        <div class="form-group">
+                            <label for="postAuthorId">发帖人ID</label>
+                            <input type="text" id="postAuthorId" placeholder="请输入你的专属ID（如：HS_001、灰塑匠人等）" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="postTitle">帖子标题</label>
+                            <input type="text" id="postTitle" placeholder="请输入帖子标题（如：我眼中的岭南灰塑艺术、灰塑制作小技巧...）" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="postCategory">帖子分类</label>
+                            <select id="postCategory" required>
+                                <option value="" disabled selected>请选择分类</option>
+                                <option value="knowledge">灰塑知识科普</option>
+                                <option value="work">灰塑作品展示</option>
+                                <option value="skill">灰塑制作技巧</option>
+                                <option value="experience">灰塑探访经历</option>
+                                <option value="other">其他相关交流</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="postContent">帖子内容</label>
+                            <textarea id="postContent" placeholder="请详细描述你的内容，可以分享灰塑相关的知识、作品、制作过程、探访心得等..." required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">发布帖子</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- 帖子展示区域 -->
+        <section>
+            <h2 class="section-title">社区<span>精选帖子</span> · 共赏灰韵</h2>
+            <div class="posts-grid" id="postsContainer">
+                <!-- 示例帖子1（时间更新为时分格式） -->
+                <div class="post-card">
+                    <div class="post-category">灰塑知识科普</div>
+                    <h3 class="post-title">岭南灰塑的历史渊源与艺术特色</h3>
+                    <p class="post-content">灰塑，又称“灰批”，是岭南地区传统建筑装饰艺术之一，以石灰为主要原料，混合糯米粉、桐油等辅料，经过揉、搓、捏、塑等工艺，制作出各种人物、花鸟、瑞兽等图案，常用于祠堂、庙宇、民居的屋脊、墙头、门楣等处......</p>
+                    <div class="post-meta">
+                        <span>发布人：灰塑爱好者</span>
+                        <span>发布时间：2026-01-15 14:25</span>
+                    </div>
+                </div>
+
+                <!-- 示例帖子2（时间更新为时分格式） -->
+                <div class="post-card">
+                    <div class="post-category">灰塑作品展示</div>
+                    <h3 class="post-title">自制庭院灰塑瑞兽摆件完成</h3>
+                    <p class="post-content">耗时一个月，终于完成了这尊灰塑狮子摆件，参考了陈家祠的传统灰塑样式，原料选用了优质生石灰和糯米粉，经过反复塑形、晾干、上色，最终呈现出这样的效果，分享给大家一起交流......</p>
+                    <div class="post-meta">
+                        <span>发布人：匠心手作</span>
+                        <span>发布时间：2026-01-14 09:40</span>
+                    </div>
+                </div>
+
+                <!-- 示例帖子3（时间更新为时分格式） -->
+                <div class="post-card">
+                    <div class="post-category">灰塑探访经历</div>
+                    <h3 class="post-title">探访广州陈家祠，沉浸式感受灰塑之美</h3>
+                    <p class="post-content">周末专程前往陈家祠，近距离观赏了被誉为“灰塑博物馆”的各式灰塑作品，屋脊上的人物故事、花鸟瑞兽栩栩如生，细节之处尽显古代工匠的精湛技艺，随手拍了很多照片，和大家分享我的探访心得......</p>
+                    <div class="post-meta">
+                        <span>发布人：旅途行者</span>
+                        <span>发布时间：2026-01-13 16:10</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // 发帖功能实现（新增ID获取 + 时间精确到时分）
+        document.addEventListener('DOMContentLoaded', function() {
+            const postForm = document.getElementById('grayPlasticPostForm');
+            const postsContainer = document.getElementById('postsContainer');
+
+            // 表单提交事件
+            postForm.addEventListener('submit', function(e) {
+                // 阻止表单默认提交行为（避免页面刷新）
+                e.preventDefault();
+
+                // 获取表单输入值（新增：发帖人ID）
+                const postAuthorId = document.getElementById('postAuthorId').value.trim(); // 新增ID获取
+                const postTitle = document.getElementById('postTitle').value.trim();
+                const postCategory = document.getElementById('postCategory').value;
+                const postCategoryText = document.getElementById('postCategory').options[document.getElementById('postCategory').selectedIndex].text;
+                const postContent = document.getElementById('postContent').value.trim();
+
+                // 验证：ID/标题/分类/内容不能为空
+                if (!postAuthorId || !postTitle || !postCategory || !postContent) {
+                    alert('请填写完整的发帖信息（ID/标题/分类/内容）后再发布！');
+                    return;
+                }
+
+                // 时间格式化：YYYY-MM-DD HH:MM（新增时分处理）
+                const currentDate = new Date();
+                const year = currentDate.getFullYear();
+                const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+                const day = String(currentDate.getDate()).padStart(2, '0');
+                const hour = String(currentDate.getHours()).padStart(2, '0'); // 小时
+                const minute = String(currentDate.getMinutes()).padStart(2, '0'); // 分钟
+                const formattedDate = `${year}-${month}-${day} ${hour}:${minute}`; // 组合成带时分的格式
+
+                // 创建新帖子卡片元素（使用输入的ID，时间带时分）
+                const newPostCard = document.createElement('div');
+                newPostCard.className = 'post-card';
+                newPostCard.innerHTML = `
+                    <div class="post-category">${postCategoryText}</div>
+                    <h3 class="post-title">${postTitle}</h3>
+                    <p class="post-content">${postContent}</p>
+                    <div class="post-meta">
+                        <span>发布人：${postAuthorId}</span> <!-- 替换为输入的ID -->
+                        <span>发布时间：${formattedDate}</span> <!-- 带时分的时间 -->
+                    </div>
+                `;
+
+                // 将新帖子插入到展示区最前面
+                postsContainer.insertBefore(newPostCard, postsContainer.firstChild);
+
+                // 重置表单（清空所有输入框）
+                postForm.reset();
+
+                // 提示发帖成功
+                alert('帖子发布成功！');
+            });
+        });
+    </script>
+    
+</body>
+</html>
